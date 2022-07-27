@@ -1,0 +1,6 @@
+user stories:
+1. as a user I want to search for news
+2. as a user I want to find an article looking at a thumbnail and a short description
+3. as a user I want to add the articles I like to the saved bookmark
+4. as a user I want to add new articles.
+5. as a user I want to see my saved articles and own news when I come back to the app
