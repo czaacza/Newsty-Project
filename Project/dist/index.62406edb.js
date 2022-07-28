@@ -17,8 +17,6 @@ const showArticle = async function() {
         const articles = data.articles;
         const article = articles[0];
         const p = document.createElement("p");
-        p.append(article.content);
-        articleContainer.append(p);
         console.log(articles);
         if (!response.ok) throw new Error(`${data.message} (${response.status})`);
         // Rendering the pagination

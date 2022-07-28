@@ -295,6 +295,7 @@ body {
   border: none;
   font-family: inherit;
   font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .search__field:focus {
@@ -497,7 +498,7 @@ body {
 
 .search-results {
   flex-direction: column;
-  padding: 3rem 0;
+  padding: 3.5rem 0;
   display: flex;
 }
 
@@ -543,7 +544,7 @@ body {
 }
 
 .article__fig {
-  height: 32rem;
+  height: 24rem;
   transform-origin: top;
   position: relative;
 }
@@ -552,7 +553,7 @@ body {
   content: "";
   height: 100%;
   width: 100%;
-  opacity: .1;
+  opacity: .3;
   background-image: linear-gradient(to bottom right, #74c0fc, #1971c2);
   display: block;
   position: absolute;
@@ -563,6 +564,7 @@ body {
 .article__img {
   width: 100%;
   height: 100%;
+  object-position: center;
   object-fit: cover;
   display: block;
 }
@@ -573,7 +575,8 @@ body {
   width: 100%;
   text-align: center;
   background-image: linear-gradient(to bottom right, #4dabf7, #1971c2);
-  font-size: 3.25rem;
+  padding: 1.8rem 1.2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.95;
 }
