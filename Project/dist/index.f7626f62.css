@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 150rem;
   min-height: 117rem;
   background-color: #fff;
   border-radius: 9px;
@@ -55,7 +55,7 @@ body {
   text-transform: uppercase;
   color: #fff;
   cursor: pointer;
-  background-image: linear-gradient(to bottom right, #74c0fc, #1971c2);
+  background-image: linear-gradient(to bottom right, #4dabf7, #1971c2);
   border: none;
   border-radius: 10rem;
   align-items: center;
@@ -101,13 +101,14 @@ body {
 }
 
 .btn--inline {
-  color: #f38e82;
+  color: #1971c2;
   cursor: pointer;
   background-color: #e9ecef;
   border: none;
   border-radius: 10rem;
   align-items: center;
   padding: .8rem 1.2rem;
+  font-family: Nunito Sans, sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
   transition: all .2s;
@@ -172,7 +173,7 @@ body {
 .btn--tiny svg {
   height: 100%;
   width: 100%;
-  fill: #f38e82;
+  fill: #1971c2;
   transition: all .3s;
 }
 
@@ -195,7 +196,7 @@ body {
 }
 
 .heading--2 {
-  color: #f38e82;
+  color: #1971c2;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -215,7 +216,7 @@ body {
 .spinner svg {
   height: 6rem;
   width: 6rem;
-  fill: #f38e82;
+  fill: #1971c2;
   animation: rotate 2s linear infinite;
 }
 
@@ -239,7 +240,7 @@ body {
 .message svg, .error svg {
   height: 3rem;
   width: 3rem;
-  fill: #f38e82;
+  fill: #1971c2;
   transform: translateY(-.3rem);
 }
 
@@ -262,6 +263,11 @@ body {
   height: 5.4rem;
   margin-left: 4rem;
   display: block;
+}
+
+.search-nav-bar {
+  gap: 4.8rem;
+  display: flex;
 }
 
 .search {
@@ -345,7 +351,7 @@ body {
 .nav__btn svg {
   height: 2.4rem;
   width: 2.4rem;
-  fill: #f38e82;
+  fill: #1971c2;
   margin-right: .7rem;
   transform: translateY(-1px);
 }
@@ -407,15 +413,15 @@ body {
   transform: translateY(-2px);
 }
 
-.preview__link--active {
+.preview__link:active {
   background-color: #e9ecef;
 }
 
 .preview__fig {
-  height: 5.8rem;
+  height: 6.4rem;
   backface-visibility: hidden;
   border-radius: 50%;
-  flex: 0 0 5.8rem;
+  flex: 0 0 6.4rem;
   margin-right: 2rem;
   position: relative;
   overflow: hidden;
@@ -425,7 +431,7 @@ body {
   content: "";
   height: 100%;
   width: 100%;
-  opacity: .4;
+  opacity: .2;
   background-image: linear-gradient(to bottom right, #74c0fc, #1971c2);
   display: block;
   position: absolute;
@@ -450,13 +456,13 @@ body {
 }
 
 .preview__title {
-  color: #f38e82;
+  color: #1971c2;
   text-transform: uppercase;
   text-overflow: ellipsis;
-  max-width: 25rem;
+  max-width: 32rem;
   white-space: nowrap;
   grid-column: 1 / -1;
-  font-size: 1.45rem;
+  font-size: 1.52rem;
   font-weight: 600;
   overflow: hidden;
 }
@@ -483,7 +489,7 @@ body {
 .preview__user-generated svg {
   height: 1.2rem;
   width: 1.2rem;
-  fill: #f38e82;
+  fill: #1971c2;
 }
 
 .search-results {
@@ -527,21 +533,23 @@ body {
   color: #918581;
 }
 
-.recipe {
+.article {
   background-color: #e9ecef;
+  flex-direction: column;
+  display: flex;
 }
 
-.recipe__fig {
+.article__fig {
   height: 32rem;
   transform-origin: top;
   position: relative;
 }
 
-.recipe__fig:before {
+.article__fig:before {
   content: "";
   height: 100%;
   width: 100%;
-  opacity: .6;
+  opacity: .1;
   background-image: linear-gradient(to bottom right, #74c0fc, #1971c2);
   display: block;
   position: absolute;
@@ -549,76 +557,71 @@ body {
   left: 0;
 }
 
-.recipe__img {
+.article__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.recipe__title {
+.article__title {
   color: #fff;
   text-transform: uppercase;
-  width: 50%;
+  width: 100%;
   text-align: center;
+  background-image: linear-gradient(to bottom right, #4dabf7, #1971c2);
   font-size: 3.25rem;
   font-weight: 700;
   line-height: 1.95;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 20%)skewY(-6deg);
 }
 
-.recipe__title span {
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  background-image: linear-gradient(to bottom right, #74c0fc, #1971c2);
+.article__title span {
   padding: 1.3rem 2rem;
 }
 
 @media only screen and (max-width: 61.25em) {
-  .recipe__title {
+  .article__title {
     width: 70%;
   }
 }
 
-.recipe__details {
+.article__details {
   align-items: center;
-  padding: 7.5rem 8rem 3.5rem;
+  padding: 3.5rem 8rem;
   display: flex;
 }
 
-.recipe__info {
+.article__info {
   text-transform: uppercase;
   align-items: center;
   font-size: 1.65rem;
+  font-weight: 600;
   display: flex;
 }
 
-.recipe__info:not(:last-child) {
+.article__info:not(:last-child) {
   margin-right: 4.5rem;
 }
 
-.recipe__info-icon {
+.article__info-icon {
   height: 2.35rem;
   width: 2.35rem;
-  fill: #f38e82;
+  fill: #1971c2;
   margin-right: 1.15rem;
 }
 
-.recipe__info-data {
+.article__info-bold {
   margin-right: .5rem;
   font-weight: 700;
 }
 
-.recipe__info-buttons {
+.article__info-buttons {
   margin-left: 1.6rem;
   display: flex;
   transform: translateY(-1px);
 }
 
-.recipe__user-generated {
+.article__user-generated {
   height: 4rem;
   width: 4rem;
   background-color: #eeeae8;
@@ -630,13 +633,13 @@ body {
   display: flex;
 }
 
-.recipe__user-generated svg {
+.article__user-generated svg {
   height: 2.25rem;
   width: 2.25rem;
-  fill: #f38e82;
+  fill: #1971c2;
 }
 
-.recipe__ingredients {
+.article__ingredients {
   background-color: #f2efee;
   flex-direction: column;
   align-items: center;
@@ -646,46 +649,46 @@ body {
   display: flex;
 }
 
-.recipe__ingredient-list {
+.article__ingredient-list {
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem 3rem;
   list-style: none;
   display: grid;
 }
 
-.recipe__ingredient {
+.article__ingredient {
   display: flex;
 }
 
-.recipe__icon {
+.article__icon {
   height: 2rem;
   width: 2rem;
-  fill: #f38e82;
+  fill: #1971c2;
   flex: none;
   margin-top: .1rem;
   margin-right: 1.1rem;
 }
 
-.recipe__quantity {
+.article__quantity {
   flex: none;
   margin-right: .5rem;
 }
 
-.recipe__directions {
+.article__directions {
   flex-direction: column;
   align-items: center;
   padding: 5rem 10rem;
   display: flex;
 }
 
-.recipe__directions-text {
+.article__directions-text {
   text-align: center;
   color: #918581;
   margin-bottom: 3.5rem;
   font-size: 1.7rem;
 }
 
-.recipe__publisher {
+.article__publisher {
   font-weight: 700;
 }
 
@@ -765,7 +768,7 @@ body {
 
 .upload__column input:focus {
   background-color: #e9ecef;
-  border: 1px solid #f38e82;
+  border: 1px solid #1971c2;
   outline: none;
 }
 
