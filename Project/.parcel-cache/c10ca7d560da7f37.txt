@@ -42,7 +42,7 @@
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\terser\node_modules\commander\index.js133033894519754714 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\transformer-svg\LICENSE133033894495814881 0
 139D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\dom-serializer\node_modules\entities\lib\index.d.ts.map133033894579747106 0
-75D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist133034777384624281 1
+75D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist133034793924858367 1
 117D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\let.js133033894672492593 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\core\lib\PackagerRunner.js133033894631993022 0
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\weak-lru-cache\LRFUExpirer.js133033894475525364 0
@@ -69,7 +69,7 @@
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\svgo\plugins\convertStyleToAttrs.js133033894581298613 0
 132D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\css-matches-pseudo.js133033894643916286 0
 138D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\react-refresh\cjs\react-refresh-runtime.development.js133033894487702328 0
-81D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\index.html133034774517753868 0
+81D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\index.html133034793135900156 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\ER.js133033894647796280 0
 83D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules133033896994129786 1
 98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\acorn.cmd133033894681412122 0
@@ -120,7 +120,7 @@
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\transformer-svg\package.json133033894543019344 0
 102D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\timsort\.npmignore133033894473690177 0
 111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\src\ordered-binary.cpp133033894634778152 0
-93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\sass\_article.scss133034777382977550 0
+93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\sass\_article.scss133034795038168345 0
 104D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map\README.md133033894471930194 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\GT.js133033894659890890 0
 101D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\sass\sass.dart.js133033896088225144 0
@@ -207,7 +207,7 @@
 140D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\optimizer-image\parcel-image.win32-x64-msvc.node133033894640016009 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\AI.js133033894544161014 0
 128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\css-line-clamp.js133033894643386289 0
-96D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\favicon.8b2f57bf.png133034736588116071 0
+96D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\favicon.8b2f57bf.png133034793843332920 0
 92D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\chokidar133033896087785151 1
 88D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@swc133033894463015073 1
 108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\term-size\vendor\windows133033894488042329 1
@@ -215,7 +215,7 @@
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\HR.js133033894660200890 0
 111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\node-gyp-build\package.json133033894483246530 0
 108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\normalize-path\README.md133033896087534806 0
-97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.62406edb.js.map133034745922311280 0
+97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.62406edb.js.map133034793843482912 0
 101D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\dist\util.js133033894618165456 0
 94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\domhandler133033894481898394 1
 93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@trysound133033894463025071 1
@@ -4336,9 +4336,9 @@
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\svgo.cmd133033894681422106 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\svgo.ps1133033894681422106 0
 95D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\terser133033894681422106 0
-94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.21bad73c.svg133034736588046051 0
-93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.62406edb.js133034745922291279 0
-94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css133034777384594279 0
-98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css.map133034777384614292 0
-86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.html133034774519017799 0
-93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\logo.726d37a8.png133034736588206046 0
+94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.21bad73c.svg133034793844132919 0
+93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.62406edb.js133034793843462925 0
+94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css133034793924839947 0
+98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css.map133034793924858367 0
+86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.html133034793844132919 0
+93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\logo.726d37a8.png133034793843362927 0
