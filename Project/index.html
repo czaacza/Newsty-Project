@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="src/sass/main.scss" />
-    <script defer src="src/js/controller.js"></script>
+    <script defer type="module" src="src/js/controller.js"></script>
 
     <title>Newsty // Search for the latest news!</title>
   </head>
@@ -87,6 +87,8 @@
       </header>
 
       <div class="search-results">
+        <a href="#486807347">ARTICLE 1</a>
+        <a href="#1219778017">ARTICLE 2</a>
         <ul class="results">
           <!-- <li class="preview">
             <a class="preview__link preview__link--active" href="#23456">
@@ -134,14 +136,14 @@
       </div>
 
       <div class="article">
-        <!-- <div class="message">
+        <div class="message">
           <div>
             <svg>
               <use href="src/img/icons.svg#icon-smile"></use>
             </svg>
           </div>
           <p>Start by searching for an article. Have fun!</p>
-        </div> -->
+        </div>
 
         <!-- <div class="spinner">
           <svg>
@@ -157,19 +159,19 @@
             </div>
             <p>No articles found for your query. Please try again!</p>
           </div> -->
-        <div class="article__title">
-          <p>
-            Italy's antitrust probes Samsung over alleged unfair commercial
-            practices - Reuters
-          </p>
-        </div>
-        <figure class="article__fig">
+        <!-- <figure class="article__fig">
           <img
             src="https://www.reuters.com/resizer/x7lv5kYSUcqi9hBMFR3V2N4lMUw=/1200x628/smart/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/YA25IDZXCNKRFBLAMSEPOLAUUM.jpg"
             alt="Tomato"
             class="article__img"
           />
         </figure>
+        <div class="article__title">
+          <p>
+            Italy's antitrust probes Samsung over alleged unfair commercial
+            practices - Reuters
+          </p>
+        </div>
 
         <div class="article__details">
           <div class="article__info">
@@ -200,44 +202,49 @@
           </button>
         </div>
 
-        <div class="article__ingredients">
+        <div class="article__heading">
           <h2 class="heading--2">article</h2>
         </div>
         <div class="article__text">
-          <p>
-            "Italy's antitrust authority said on Wednesday it had opened an
-            investigation against Samsung in Italy and two other companies over
-            alleged misleading and aggressive commercial practices."
-          </p>
-          <br />
-          <p>
-            "MILAN, July 27 (Reuters) - Italy's antitrust authority said on
-            Wednesday it had opened an investigation against Samsung in Italy
-            and two other companies over alleged misleading and aggressive
-            commerc… [+509 chars]"
-          </p>
+          <div class="article__description">
+            <p>
+              Italy's antitrust authority said on Wednesday it had opened an
+              investigation against Samsung in Italy and two other companies
+              over alleged misleading and aggressive commercial practices.
+            </p>
+          </div>
+          <div class="article__content">
+            <p>
+              MILAN, July 27 (Reuters) - Italy's antitrust authority said on
+              Wednesday it had opened an investigation against Samsung in Italy
+              and two other companies over alleged misleading and aggressive
+              commerc… [+509 chars]
+            </p>
+          </div>
         </div>
 
         <div class="article__directions">
-          <h2 class="heading--2">How to cook it</h2>
+          <h2 class="heading--2">Read more</h2>
           <p class="article__directions-text">
-            This article was carefully designed and tested by
-            <span class="article__publisher">The Pioneer Woman</span>. Please
-            check out directions at their website.
+            This small excerpt from the article was brought up by
+            <span class="article__publisher">Google News API</span>.
+          </p>
+          <p class="article__direction-text-ending">
+            Check the whole article here!
           </p>
           <a
             class="btn--small article__btn"
             href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
             target="_blank"
           >
-            <span>Directions</span>
+            <span>Article</span>
             <svg class="search__icon">
               <use href="src/img/icons.svg#icon-arrow-right"></use>
             </svg>
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="overlay hidden"></div>
     <div class="add-recipe-window hidden">

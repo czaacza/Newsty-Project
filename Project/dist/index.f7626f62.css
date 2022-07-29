@@ -585,12 +585,6 @@ body {
   padding: 1.3rem 2rem;
 }
 
-@media only screen and (max-width: 61.25em) {
-  .article__title {
-    width: 70%;
-  }
-}
-
 .article__details {
   align-items: center;
   padding: 3.5rem 8rem;
@@ -645,15 +639,11 @@ body {
   fill: #1971c2;
 }
 
-.article__ingredients {
+.article__heading {
   background-color: #f2efee;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 5rem 8rem 0;
   font-size: 1.6rem;
   line-height: 1.4;
-  display: flex;
 }
 
 .article__ingredient-list {
@@ -668,28 +658,40 @@ body {
 }
 
 .article__text {
+  text-align: justify;
   background-color: #f2efee;
-  padding: 0 8rem 4rem;
+  padding: 1rem 8rem 8rem;
   font-size: 1.65rem;
   font-weight: 400;
+}
+
+.article__description {
+  margin-bottom: 3.4rem;
+  font-weight: 600;
 }
 
 .article__directions {
   flex-direction: column;
   align-items: center;
-  padding: 5rem 10rem;
+  padding: 5rem;
   display: flex;
 }
 
 .article__directions-text {
   text-align: center;
   color: #918581;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1.5rem;
   font-size: 1.7rem;
 }
 
 .article__publisher {
   font-weight: 700;
+}
+
+.article__direction-text-ending {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  display: block;
 }
 
 .add-recipe-window {

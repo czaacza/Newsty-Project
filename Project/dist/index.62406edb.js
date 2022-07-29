@@ -40,7 +40,88 @@ const showArticle = async function() {
             resultsUl.innerHTML = resultsUl.innerHTML.concat(newHtml);
         }
         // Rendering the article
-        const markup = ``;
+        const markup = `<figure class="article__fig">
+          <img
+            src="${article.urlToImage}"
+            alt="Tomato"
+            class="article__img"
+          />
+        </figure>
+        <div class="article__title">
+          <p>
+            ${article.title}
+          </p>
+        </div>
+
+        <div class="article__details">
+          <div class="article__info">
+            <svg class="article__info-icon">
+              <use href="src/img/icons.svg#icon-clock"></use>
+            </svg>
+            <span class="article__info-text">${article.publishedAt.split("T")[0]}</span>
+          </div>
+          <div class="article__info">
+            <svg class="article__info-icon">
+              <use href="src/img/icons.svg#icon-users"></use>
+            </svg>
+            <span class="article__info-bold article__info-bold--people"
+              >Author:</span
+            >
+            <span class="article__info-text">${article.author}, ${article.source.name}</span>
+          </div>
+
+          <div class="article__user-generated">
+            <svg>
+              <use href="src/img/icons.svg#icon-user"></use>
+            </svg>
+          </div>
+          <button class="btn--round">
+            <svg class="">
+              <use href="src/img/icons.svg#icon-bookmark-fill"></use>
+            </svg>
+          </button>
+        </div>
+
+        <div class="article__heading">
+          <h2 class="heading--2">article</h2>
+        </div>
+        <div class="article__text">
+          <div class="article__description">
+            <p>
+              ${article.description}
+            </p>
+          </div>
+          <div class="article__content">
+            <p>
+              ${article.content}
+            </p>
+          </div>
+        </div>
+
+        <div class="article__directions">
+          <h2 class="heading--2">Read more</h2>
+          <p class="article__directions-text">
+            This small excerpt from the article was brought up by
+            <span class="article__publisher">Google News API</span>.
+          </p>
+          <p class="article__direction-text-ending">
+            Check the whole article here!
+          </p>
+          <a
+            class="btn--small article__btn"
+            href="${article.url}"
+            target="_blank"
+          >
+            <span>Article</span>
+            <svg class="search__icon">
+              <use href="src/img/icons.svg#icon-arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>`;
+        articleContainer.innerHTML = "";
+        articleContainer.insertAdjacentHTML("afterbegin", markup);
     } catch (err) {
         alert(err);
     }
