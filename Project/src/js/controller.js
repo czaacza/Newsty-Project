@@ -201,6 +201,5 @@ const showArticle = async function () {
     alert(err);
   }
 };
-showArticle();
 
-window.addEventListener('hashchange', showArticle);
+['hashchange', 'load'].forEach(e => window.addEventListener(e, showArticle));
