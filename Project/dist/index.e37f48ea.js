@@ -535,10 +535,9 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _modelJs = require("./model.js");
-var _iconsSvg = require("url:../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+var _articleViewJs = require("./views/articleView.js");
+var _articleViewJsDefault = parcelHelpers.interopDefault(_articleViewJs);
 var _runtime = require("regenerator-runtime/runtime");
-const articleContainer = document.querySelector(".article");
 const resultsUl = document.querySelector(".results");
 const timeout = function(s) {
     return new Promise(function(_, reject) {
@@ -559,27 +558,14 @@ String.prototype.hashCode = function() {
 };
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-const renderSpinner = function(parentEl) {
-    const markup = `<div class="spinner">
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-          </svg>
-        </div>`;
-    parentEl.innerHTML = "";
-    parentEl.insertAdjacentHTML("afterbegin", markup);
-};
-const showArticle = async function() {
+const controlArticles = async function() {
     try {
-        renderSpinner(articleContainer);
-        // Loading article
+        (0, _articleViewJsDefault.default).renderSpinner();
+        // Loading articles
         await _modelJs.loadArticles();
+        const chosenArticleID = window.location.hash.slice(1);
         // Get the article with selected ID
-        const clickedArticleID = window.location.hash.slice(1);
-        let article = undefined;
-        for (let art of _modelJs.state.articles)if (art.id == clickedArticleID) {
-            article = art;
-            break;
-        }
+        _modelJs.loadChosenArticle(chosenArticleID);
         // console.log(article.title);
         // Rendering the pagination
         // for (let i = 0; i < 10; i++) {
@@ -602,94 +588,7 @@ const showArticle = async function() {
         //   resultsUl.innerHTML = resultsUl.innerHTML.concat(newHtml);
         // }
         // Rendering the article
-        let markup;
-        if (article) markup = `<figure class="article__fig">
-          <img
-            src="${article.urlToImage}"
-            alt="Tomato"
-            class="article__img"
-          />
-        </figure>
-        <div class="article__title">
-          <p>
-            ${article.title}
-          </p>
-        </div>
-
-        <div class="article__details">
-          <div class="article__info">
-            <svg class="article__info-icon">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-clock"></use>
-            </svg>
-            <span class="article__info-text">${article.publishedAt.split("T")[0]}</span>
-          </div>
-          <div class="article__info">
-            <svg class="article__info-icon">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-users"></use>
-            </svg>
-            <span class="article__info-text">${article.author}, ${article.source.name}</span>
-          </div>
-
-          <div class="article__user-generated">
-            <svg>
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-user"></use>
-            </svg>
-          </div>
-          <button class="btn--round">
-            <svg class="">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark-fill"></use>
-            </svg>
-          </button>
-        </div>
-
-        <div class="article__heading">
-          <h2 class="heading--2">article</h2>
-        </div>
-        <div class="article__text">
-          <div class="article__description">
-            <p>
-              ${article.description}
-            </p>
-          </div>
-          <div class="article__content">
-            <p>
-              ${article.content}
-            </p>
-          </div>
-        </div>
-
-        <div class="article__directions">
-          <h2 class="heading--2">Read more</h2>
-          <p class="article__directions-text">
-            This small excerpt from the article was brought up by
-            <span class="article__publisher">Google News API</span>.
-          </p>
-          <p class="article__direction-text-ending">
-            Check the whole article here!
-          </p>
-          <a
-            class="btn--small article__btn"
-            href="${article.url}"
-            target="_blank"
-          >
-            <span>Article</span>
-            <svg class="search__icon">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-arrow-right"></use>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>`;
-        else markup = `<div class="message">
-        <div>
-          <svg>
-            <use href="${0, _iconsSvgDefault.default}.svg#icon-smile"></use>
-          </svg>
-        </div>
-        <p>Start by searching for an article. Have fun!</p>
-      </div>;`;
-        articleContainer.innerHTML = "";
-        articleContainer.insertAdjacentHTML("afterbegin", markup);
+        (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
     } catch (err) {
         alert(err);
     }
@@ -697,46 +596,9 @@ const showArticle = async function() {
 [
     "hashchange",
     "load"
-].forEach((e)=>window.addEventListener(e, showArticle));
+].forEach((e)=>window.addEventListener(e, controlArticles));
 
-},{"url:../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21"}],"loVOp":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -2433,9 +2295,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
+parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
 var _regeneratorRuntime = require("regenerator-runtime");
 const state = {
-    articles: []
+    articles: [],
+    chosenArticle: {}
 };
 const loadArticles = async function() {
     try {
@@ -2462,7 +2326,167 @@ const loadArticles = async function() {
         alert(err);
     }
 };
+const loadChosenArticle = function(id) {
+    for (let art of state.articles)if (art.id == id) {
+        state.chosenArticle = art;
+        return;
+    }
+};
 
-},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class ArticleView {
+    #parentElement = document.querySelector(".article");
+    #data;
+    render(data) {
+        this.#data = data;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML("afterbegin", this.#generateArticleMarkup());
+    }
+     #clear() {
+        this.#parentElement.innerHTML = "";
+    }
+    renderSpinner = function() {
+        const markup = `<div class="spinner">
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+          </svg>
+        </div>`;
+        this.#parentElement.innerHTML = "";
+        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+    };
+     #generateArticleMarkup() {
+        return `<figure class="article__fig">
+          <img
+            src="${this.#data.urlToImage}"
+            alt="Tomato"
+            class="article__img"
+          />
+        </figure>
+        <div class="article__title">
+          <p>
+            ${this.#data.title}
+          </p>
+        </div>
+
+        <div class="article__details">
+          <div class="article__info">
+            <svg class="article__info-icon">
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-clock"></use>
+            </svg>
+            <span class="article__info-text">${this.#data.publishedAt.split("T")[0]}</span>
+          </div>
+          <div class="article__info">
+            <svg class="article__info-icon">
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-users"></use>
+            </svg>
+            <span class="article__info-text">${this.#data.author}, ${this.#data.source.name}</span>
+          </div>
+
+          <div class="article__user-generated">
+            <svg>
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-user"></use>
+            </svg>
+          </div>
+          <button class="btn--round">
+            <svg class="">
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark-fill"></use>
+            </svg>
+          </button>
+        </div>
+
+        <div class="article__heading">
+          <h2 class="heading--2">article</h2>
+        </div>
+        <div class="article__text">
+          <div class="article__description">
+            <p>
+              ${this.#data.description}
+            </p>
+          </div>
+          <div class="article__content">
+            <p>
+              ${this.#data.content}
+            </p>
+          </div>
+        </div>
+
+        <div class="article__directions">
+          <h2 class="heading--2">Read more</h2>
+          <p class="article__directions-text">
+            This small excerpt from the article was brought up by
+            <span class="article__publisher">Google News API</span>.
+          </p>
+          <p class="article__direction-text-ending">
+            Check the whole article here!
+          </p>
+          <a
+            class="btn--small article__btn"
+            href="${this.#data.url}"
+            target="_blank"
+          >
+            <span>Article</span>
+            <svg class="search__icon">
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>`;
+    }
+     #generateMessageMarkup() {
+        return `<div class="message">
+        <div>
+          <svg>
+            <use href="${0, _iconsSvgDefault.default}.svg#icon-smile"></use>
+          </svg>
+        </div>
+        <p>Start by searching for an article. Have fun!</p>
+      </div>;`;
+    }
+}
+exports.default = new ArticleView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../../img/icons.svg":"loVOp"}],"loVOp":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map

@@ -2,6 +2,7 @@ import { async } from 'regenerator-runtime';
 
 export const state = {
   articles: [],
+  chosenArticle: {},
 };
 
 export const loadArticles = async function () {
@@ -32,5 +33,14 @@ export const loadArticles = async function () {
     console.log(state.articles);
   } catch (err) {
     alert(err);
+  }
+};
+
+export const loadChosenArticle = function (id) {
+  for (let art of state.articles) {
+    if (art.id == id) {
+      state.chosenArticle = art;
+      return;
+    }
   }
 };
