@@ -40,28 +40,6 @@ const controlArticles = async function () {
     // Get the article with selected ID
     model.loadChosenArticle(chosenArticleID);
 
-    // console.log(article.title);
-    // Rendering the pagination
-    // for (let i = 0; i < 10; i++) {
-    //   let newHtml = `<li class="preview">
-    //   <a class="preview__link preview__link--active" href="#23456">
-    //   <figure class="preview__fig">
-    //   <img src="${articles[i].urlToImage}" alt="Test" />
-    //   </figure>
-    //   <div class="preview__data">
-    //   <h4 class="preview__title">${articles[i].title}</h4>
-    //   <p class="preview__publisher">${articles[i].source.name}</p>
-    //   <div class="preview__user-generated">
-    //   <svg>
-    //   <use href="${icons}.svg#icon-user"></use>
-    //   </svg>
-    //   </div>
-    //   </div>
-    //   </a>
-    //   </li>`;
-    //   resultsUl.innerHTML = resultsUl.innerHTML.concat(newHtml);
-    // }
-
     // Rendering the article
     articleView.render(model.state.chosenArticle);
   } catch (err) {
