@@ -1,3 +1,5 @@
+import * as model from './model.js';
+
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -44,43 +46,19 @@ const showArticle = async function () {
   try {
     renderSpinner(articleContainer);
     // Loading article
-    const response = await fetch(
-      'https://newsapi.org/v2/everything?q=Samsung&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73'
-    );
-    const data = await response.json();
-
-    // Creating articles array containing ID
-
-    const articles = [];
-    for (let i = 0; i < data.articles.length; i++) {
-      const art = {
-        author: data.articles[i].author,
-        content: data.articles[i].content,
-        description: data.articles[i].description,
-        publishedAt: data.articles[i].publishedAt,
-        source: data.articles[i].source,
-        title: data.articles[i].title,
-        url: data.articles[i].url,
-        urlToImage: data.articles[i].urlToImage,
-        id: data.articles[i].content.hashCode(),
-      };
-      articles.push(art);
-    }
+    await model.loadArticles();
 
     // Get the article with selected ID
     const clickedArticleID = window.location.hash.slice(1);
     let article = undefined;
 
-    for (let art of articles) {
+    for (let art of model.state.articles) {
       if (art.id == clickedArticleID) {
         article = art;
         break;
       }
     }
     // console.log(article.title);
-    if (!response.ok) {
-      throw new Error(`${data.message} (${response.status})`);
-    }
     // Rendering the pagination
     // for (let i = 0; i < 10; i++) {
     //   let newHtml = `<li class="preview">

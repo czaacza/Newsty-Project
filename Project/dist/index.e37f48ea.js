@@ -534,6 +534,7 @@ function hmrAcceptRun(bundle, id) {
 },{}],"aenu9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _webImmediateJs = require("core-js/modules/web.immediate.js");
+var _modelJs = require("./model.js");
 var _iconsSvg = require("url:../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _runtime = require("regenerator-runtime/runtime");
@@ -571,33 +572,15 @@ const showArticle = async function() {
     try {
         renderSpinner(articleContainer);
         // Loading article
-        const response = await fetch("https://newsapi.org/v2/everything?q=Samsung&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73");
-        const data = await response.json();
-        // Creating articles array containing ID
-        const articles = [];
-        for(let i = 0; i < data.articles.length; i++){
-            const art = {
-                author: data.articles[i].author,
-                content: data.articles[i].content,
-                description: data.articles[i].description,
-                publishedAt: data.articles[i].publishedAt,
-                source: data.articles[i].source,
-                title: data.articles[i].title,
-                url: data.articles[i].url,
-                urlToImage: data.articles[i].urlToImage,
-                id: data.articles[i].content.hashCode()
-            };
-            articles.push(art);
-        }
+        await _modelJs.loadArticles();
         // Get the article with selected ID
         const clickedArticleID = window.location.hash.slice(1);
         let article = undefined;
-        for (let art of articles)if (art.id == clickedArticleID) {
+        for (let art of _modelJs.state.articles)if (art.id == clickedArticleID) {
             article = art;
             break;
         }
         // console.log(article.title);
-        if (!response.ok) throw new Error(`${data.message} (${response.status})`);
         // Rendering the pagination
         // for (let i = 0; i < 10; i++) {
         //   let newHtml = `<li class="preview">
@@ -716,7 +699,7 @@ const showArticle = async function() {
     "load"
 ].forEach((e)=>window.addEventListener(e, showArticle));
 
-},{"url:../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ"}],"loVOp":[function(require,module,exports) {
+},{"url:../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21"}],"loVOp":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -2445,6 +2428,41 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{}],"Y4A21":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
+var _regeneratorRuntime = require("regenerator-runtime");
+const state = {
+    articles: []
+};
+const loadArticles = async function() {
+    try {
+        const response = await fetch("https://newsapi.org/v2/everything?q=Samsung&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73");
+        const data = await response.json();
+        if (!response.ok) throw new Error(`${data.message}`);
+        // Creating articles array containing ID
+        for(let i = 0; i < data.articles.length; i++){
+            const art = {
+                author: data.articles[i].author,
+                content: data.articles[i].content,
+                description: data.articles[i].description,
+                publishedAt: data.articles[i].publishedAt,
+                source: data.articles[i].source,
+                title: data.articles[i].title,
+                url: data.articles[i].url,
+                urlToImage: data.articles[i].urlToImage,
+                id: data.articles[i].content.hashCode()
+            };
+            state.articles.push(art);
+        }
+        console.log(state.articles);
+    } catch (err) {
+        alert(err);
+    }
+};
+
+},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map
