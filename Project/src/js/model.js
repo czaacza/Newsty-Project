@@ -1,4 +1,6 @@
 import { async } from 'regenerator-runtime';
+import { API_URL } from './config';
+import { getJSON } from './helpers';
 
 export const state = {
   articles: [],
@@ -7,15 +9,8 @@ export const state = {
 
 export const loadArticles = async function () {
   try {
-    const response = await fetch(
-      'https://newsapi.org/v2/everything?q=Samsung&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73'
-    );
-    const data = await response.json();
-
-    if (!response.ok) throw new Error(`${data.message}`);
-
     // Creating articles array containing ID
-
+    const data = await getJSON(API_URL);
     for (let i = 0; i < data.articles.length; i++) {
       const art = {
         author: data.articles[i].author,
@@ -32,7 +27,7 @@ export const loadArticles = async function () {
     }
     console.log(state.articles);
   } catch (err) {
-    alert(err);
+    console.error(`${err} !!!!`);
   }
 };
 

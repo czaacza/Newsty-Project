@@ -5,14 +5,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 const resultsUl = document.querySelector('.results');
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-
 String.prototype.hashCode = function () {
   var hash = 0,
     i,

@@ -1,4 +1,4 @@
-7606
+7608
 93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\callsites133033894476310475 1
 171D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\side-effects-package-redirect-down133033894635098305 1
 130D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\transformer-js\lib\esmodule-helpers.js133033894518421210 0
@@ -55,7 +55,7 @@
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\typed-array\iterator.js133035628860412925 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\terser\node_modules\commander\index.js133033894519754714 0
 139D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\dom-serializer\node_modules\entities\lib\index.d.ts.map133033894579747106 0
-75D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist133036634943777991 1
+75D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist133037466856712618 1
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\weak-lru-cache\LRFUExpirer.js133033894475525364 0
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\svg-fonts.js133033894675982876 0
 107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\sass\types\options.d.ts133033896089055141 0
@@ -67,10 +67,6 @@
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map\dist\source-map.debug.js133033894579650987 0
 107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\escalade\dist\index.mjs133033894476230479 0
 88D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\package-lock.json133035628878268147 0
-120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\array\filter-out.js133035628842139343 0
-107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\weak-set133035628846849345 1
-120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\cosmiconfig\dist\getDirectory.js.map133033894579730999 0
-136D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc.c133033894627877649 0
 91D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js133035628873837850 1
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.typed-array.set.js133035628839799338 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\typed-array\entries.js133035628827071381 0
@@ -107,13 +103,6 @@
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\instance\flags.js133035628843179344 0
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\css-tree\lib\syntax\node\AnPlusB.js133033894474260185 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\type-fest\ts41\kebab-case.d.ts133033894579528923 0
-114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\string\small.js133035628864982924 0
-120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\string\starts-with.js133035628866152926 0
-110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\math\imulh.js133035628845399336 0
-116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@jridgewell\set-array\dist\types133033894480980650 1
-110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\color-convert\CHANGELOG.md133033894471760178 0
-108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\src\compression.cpp133033894632003029 0
-95D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\detect-libc133033894488072348 1
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\config-default\LICENSE133033894519810475 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\nth-check\lib\compile.d.ts.map133033894518511202 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.array.iterator.js133035628836115254 0
@@ -140,7 +129,7 @@
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.map.key-by.js133035628840739358 0
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\svgo\plugins\removeEditorsNSData.js133033894617245468 0
 112D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\es\json\stringify.js133035628866482935 0
-77D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js133036512488507431 1
+77D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js133037407951857628 1
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\object\keys.js133035628860942924 0
 79D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\sass133034730136813025 1
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\csso\lib\restructure\index.js133033894603793313 0
@@ -148,6 +137,12 @@
 159D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\side-effects-false\src133033894619304041 1
 96D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite133033894681076971 1
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\async-iterator\take.js133035628866842914 0
+88D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\helpers.js133037466855114989 0
+123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\weak-set\delete-all.js133035628826371394 0
+102D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\css-tree\README.md133033894639284354 0
+114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\svgo\plugins\preset-default.js133033894607012528 0
+121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map\dist\source-map.min.js.map133033894592044134 0
+97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\util.mjs133033894619723116 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\typed-array\reduce.js133035628863712923 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\postcss-value-parser\lib\unit.js133033894483037187 0
 103D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\watcher\src133033894585940929 1
@@ -175,7 +170,7 @@
 92D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\sass\_header.scss133034821687778206 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\array-buffer\slice.js133035628864902926 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\abortcontroller-polyfill\LICENSE133033894475270188 0
-83D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\views133036512592689831 1
+83D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\views133037407951857628 1
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\postcss-value-parser\lib\index.d.ts133033894520677312 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\svgo\bin\svgo133033894474840190 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\node-releases133033894485772340 1
@@ -184,8 +179,18 @@
 112D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\json\index.js133035628846739336 0
 99D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\sass\_searchResults.scss133034809345039965 0
 128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\dom-collections\iterator.js133035628860492929 0
+97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\index.js133033894520737328 0
+106D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\set\of.js133035628862582924 0
+90D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\braces133033896087654896 1
+95D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\ansi-styles133033894474070186 1
+107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\mdn-data\css\units.json133033894582302003 0
+87D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\config.js133037466480150323 0
+126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-set.add-all.js133035628841709340 0
+124D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\set\symmetric-difference.js133035628866822932 0
+113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\instance\keys.js133035628860912923 0
+114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\string\big.js133035628824311392 0
 117D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\css-tree\lib\syntax\node\Block.js133033894519391223 0
-91D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\controller.js133036634897114873 0
+91D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\controller.js133037465748987742 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.symbol.match.js133035628839451325 0
 130D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\fs-search\fs-search.linux-x64-gnu.node133033894620290426 0
 107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\bundler-default133033894522487641 1
@@ -196,7 +201,7 @@
 129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.reflect.define-property.js133035628838521632 0
 106D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\type-fest\package.json133033894473680188 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\immutable\dist\immutable.es.js133033896087904892 0
-86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\model.js133036634942982716 0
+86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\src\js\model.js133037410204539915 0
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\es\instance\splice.js133035628865922917 0
 111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\string\at.js133035628824201384 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\date\to-gmt-string.js133035628867172926 0
@@ -277,7 +282,7 @@
 91D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel133035628877607876 1
 140D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\optimizer-image\parcel-image.win32-x64-msvc.node133033894640016009 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\typed-array\reverse.js133035628864262919 0
-96D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\favicon.8b2f57bf.png133036633249545735 0
+96D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\favicon.8b2f57bf.png133037464993564672 0
 92D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\chokidar133033896087785151 1
 108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\term-size\vendor\windows133033894488042329 1
 129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\internals\async-iterator-iteration.js133035628823901388 0
@@ -290,11 +295,6 @@
 117D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\find-last.js133035628842889338 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\sass\types\legacy\exception.d.ts133033896088385105 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.string.sub.js133035628839236680 0
-97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\index.js133033894520737328 0
-106D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\set\of.js133035628862582924 0
-90D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\braces133033896087654896 1
-95D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\ansi-styles133033894474070186 1
-107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\mdn-data\css\units.json133033894582302003 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries133033894477413185 1
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\terser\node_modules\commander\Readme.md133033894529816413 0
 90D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\base-x133033894485772340 1
@@ -361,6 +361,13 @@
 88D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\csso133033894618252235 1
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\string\replace-all.js133035628863992921 0
 101D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\csso\package.json133033894618040082 0
+114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\string\small.js133035628864982924 0
+120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\string\starts-with.js133035628866152926 0
+110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\math\imulh.js133035628845399336 0
+116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@jridgewell\set-array\dist\types133033894480980650 1
+110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\color-convert\CHANGELOG.md133033894471760178 0
+108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\src\compression.cpp133033894632003029 0
+95D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\detect-libc133033894488072348 1
 98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\dom-serializer133033894521207321 1
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\async-iterator\find.js133035628843009340 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\set-interval.js133035628864502929 0
@@ -887,11 +894,6 @@
 128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\utility-types\dist\functional-helpers.js.map133033894520367315 0
 112D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\virtual133035628873377860 1
 108D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\react-refresh\runtime.js133033894518951199 0
-123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\weak-set\delete-all.js133035628826371394 0
-102D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\css-tree\README.md133033894639284354 0
-114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\svgo\plugins\preset-default.js133033894607012528 0
-121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map\dist\source-map.min.js.map133033894592044134 0
-97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\util.mjs133033894619723116 0
 104D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\yaml\types\binary.js133033894475170183 0
 141D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mtest3.c133033894629330456 0
 110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\math\clamp.js133035628824731384 0
@@ -1149,8 +1151,6 @@
 104D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\package.json133035628873807862 0
 105D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\utility-types\LICENSE133033894473490186 0
 110D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\utility-types\package.json133033894518521237 0
-133D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\requestidlecallback.js133033894675142807 0
-115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-js\lib\base64-vlq.js133033896087634889 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\package-manager\src\Npm.js133033894605025641 0
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\es\string\virtual\anchor.js133035628823091650 0
 127D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\typed-array\float64-array.js133035628843549343 0
@@ -1455,8 +1455,6 @@
 141D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb-data-v1\libraries\liblmdb\mtest2.c133033894628427416 0
 131D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\core\test\fixtures\context\package.json133033894644126291 0
 101D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\terser\lib\cli.js133033894581872213 0
-119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.string.substr.js133035628839256666 0
-119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\for-each.js133035628843829343 0
 98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\braces\LICENSE133033896087564890 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\web\structured-clone.js133035628866532928 0
 111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\terser\lib\equivalent-to.js133033894603773319 0
@@ -1693,8 +1691,6 @@
 127D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-support\register-hook-require.js133033894472380191 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\string\split.js133035628866072935 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-support\register.js133033894473390181 0
-113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@jridgewell\trace-mapping\src133033894581150534 1
-111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-js\lib\base64.js133033896087664905 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\EG.js133033894647666282 0
 129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\htmlnano\lib\modules\removeAttributeQuotes.js133033894581378615 0
 124D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-support\source-map-support.js133033894474590189 0
@@ -1723,6 +1719,10 @@
 105D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\node-gyp-build\bin.js133033894474070186 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\math\log10.js133035628861162921 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\string\replace-all.js133035628864012923 0
+133D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\requestidlecallback.js133033894675142807 0
+115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-js\lib\base64-vlq.js133033896087634889 0
+113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@jridgewell\trace-mapping\src133033894581150534 1
+111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-js\lib\base64.js133033896087664905 0
 111D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\string\link.js133035628861122927 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\BM.js133033894623898750 0
 124D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\json-parse-even-better-errors\LICENSE.md133033894474280180 0
@@ -1745,9 +1745,6 @@
 126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\documenthead.js133033894647276279 0
 109D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map-js\lib\util.js133033896088054901 0
 112D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\node-gyp-build\build-test.js133033894475010187 0
-129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\typed-array\filter-reject.js133035628842209339 0
-155D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@babel\helper-validator-identifier\scripts\generate-identifier-regex.js133033894481878378 0
-137D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc2.c133033894627937716 0
 107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\source-map\CHANGELOG.md133033894539658830 0
 131D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\proposals\string-replace-all-stage-4.js133035628866422930 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@jridgewell\set-array\package.json133033894472500188 0
@@ -2123,8 +2120,6 @@
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\array\virtual\with.js133035628873767851 0
 106D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\nth-check\package.json133033894489960509 0
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.iterator.find.js133035628840509335 0
-119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\includes.js133035628845569343 0
-114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\map\reduce.js133035628863622924 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\sass.cmd133033896089267833 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\webusb.js133033894680686946 0
 104D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\nullthrows\README.md133033894520291128 0
@@ -2506,6 +2501,13 @@
 133D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest3.c133033894629480150 0
 133D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest4.c133033894629942033 0
 133D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest5.c133033894630159278 0
+120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\array\filter-out.js133035628842139343 0
+107D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\weak-set133035628846849345 1
+120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\cosmiconfig\dist\getDirectory.js.map133033894579730999 0
+136D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc.c133033894627877649 0
+129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\typed-array\filter-reject.js133035628842209339 0
+155D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@babel\helper-validator-identifier\scripts\generate-identifier-regex.js133033894481878378 0
+137D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc2.c133033894627937716 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\css-tree\lib\syntax\node\Identifier.js133033894619621397 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\htmlnano\lib\modules\minifyJson.js133033894579640987 0
 138D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_remap.c133033894628051778 0
@@ -3650,7 +3652,7 @@
 124D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\number\is-safe-integer.js133035628859895551 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\regions\ML.js133033894673112623 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\number\parse-float.js133035628862882920 0
-98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css.map133036633249598775 0
+98D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css.map133037464993634688 0
 117D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\number\to-fixed.js133035628867132924 0
 127D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\border-radius.js133033894626537795 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\number\to-precision.js133035628867402920 0
@@ -3686,6 +3688,10 @@
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\find.js133035628843059347 0
 126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\reflect\prevent-extensions.js133035628863102924 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\flat.js133035628843479355 0
+119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.string.substr.js133035628839256666 0
+119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\for-each.js133035628843829343 0
+119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\includes.js133035628845569343 0
+114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\map\reduce.js133035628863622924 0
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\index-of.js133035628845679338 0
 112D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\map\find-key.js133035628842669338 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\instance\keys.js133035628860932919 0
@@ -3796,7 +3802,7 @@
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\reverse.js133035628864252920 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\splice.js133035628865972930 0
 114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\values.js133035628873377860 0
-93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\logo.726d37a8.png133036633249665699 0
+93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\logo.726d37a8.png133037464993804667 0
 125D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\string\virtual\trim-right.js133035628872307865 0
 115D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@parcel\watcher\src\Debounce.hh133033894581110545 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\stable\array\virtual\at.js133035628824191385 0
@@ -3928,7 +3934,7 @@
 128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\@babel\helper-validator-identifier\README.md133033894472400189 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.array.find-last.js133035628835981080 0
 116D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.array.find.js133035628836000764 0
-93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.e37f48ea.js133036633988767819 0
+93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.e37f48ea.js133037466856692622 0
 113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\object\create.js133035628826031386 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.array.flat-map.js133035628836010774 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.array.for-each.js133035628836040779 0
@@ -4021,8 +4027,8 @@
 126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.define-getter.js133035628837124327 0
 130D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.define-properties.js133035628837134334 0
 127D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\typed-array\uint8-array.js133035628872867852 0
-128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.define-property.js133035628837144339 0
 127D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\array\virtual\find-last.js133035628842849335 0
+128D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.define-property.js133035628837144339 0
 126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.define-setter.js133035628837164327 0
 120D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.entries.js133035628837174327 0
 119D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\es.object.freeze.js133035628837174327 0
@@ -4347,10 +4353,6 @@
 102D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\es\promise133035628846039338 1
 126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-map.emplace.js133035628841689335 0
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-map.from.js133035628841689335 0
-126D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-set.add-all.js133035628841709340 0
-124D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\set\symmetric-difference.js133035628866822932 0
-113D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\instance\keys.js133035628860912923 0
-114D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\string\big.js133035628824311392 0
 129D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-set.delete-all.js133035628841719337 0
 105D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\symbol133035628873047869 1
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\modules\esnext.weak-set.from.js133035628841729340 0
@@ -4714,7 +4716,7 @@
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\typed-array\to-reversed.js133035628871327868 0
 99D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\semver.ps1133033894681412122 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\typed-array\to-spliced.js133035628871697854 0
-97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.e37f48ea.js.map133036633988777815 0
+97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.e37f48ea.js.map133037466856712618 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\typed-array\to-string.js133035628871987859 0
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\full\typed-array\uint8-array.js133035628872877852 0
 130D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\childnode-remove.js133033894631123079 0
@@ -5360,8 +5362,8 @@
 123D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\find-index.js133035628842599343 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\caniuse-lite\data\features\midi.js133033894673082857 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\actual\number\virtual\index.js133035628845789336 0
-122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\find-last.js133035628842849335 0
 122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\array\virtual\find.js133035628842959340 0
+122D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\find-last.js133035628842849335 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\flat-map.js133035628843319346 0
 118D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\group.js133035628845079328 0
 121D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\core-js\features\instance\index-of.js133035628845639340 0
@@ -7600,8 +7602,8 @@
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\sass.ps1133033896089267833 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\svgo.cmd133033894681422106 0
 97D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\node_modules\.bin\svgo.ps1133033894681422106 0
-94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.21bad73c.svg133036633249795711 0
-94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.dfd7a6db.svg133036633249795711 0
+94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.21bad73c.svg133037464993724706 0
+94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\icons.dfd7a6db.svg133037464993724706 0
 93D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.62406edb.js133035598369205395 0
-94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css133036633249555721 0
-86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.html133036633249795711 0
+94D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.f7626f62.css133037464993604668 0
+86D:\JAVASCRIPT_PROJEKTY\Web-Development-Projects\Newsty Project\Project\dist\index.html133037464993724706 0
