@@ -551,11 +551,8 @@ String.prototype.hashCode = function() {
 };
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-const controlArticles = async function() {
+const controlArticle = async function() {
     try {
-        (0, _articleViewJsDefault.default).renderSpinner();
-        // Loading articles
-        await _modelJs.loadArticles();
         const chosenArticleID = window.location.hash.slice(1);
         // Get the article with selected ID
         _modelJs.loadChosenArticle(chosenArticleID);
@@ -565,10 +562,15 @@ const controlArticles = async function() {
         alert(err);
     }
 };
-[
-    "hashchange",
-    "load"
-].forEach((e)=>window.addEventListener(e, controlArticles));
+const init = async function() {
+    try {
+        await _modelJs.loadArticles();
+        (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
+    } catch (err) {
+        console.log(err);
+    }
+};
+init();
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -2364,6 +2366,14 @@ class ArticleView {
         this.#parentElement.innerHTML = "";
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     };
+    addHandlerRender(handler) {
+        [
+            "load",
+            "hashchange"
+        ].forEach((ev)=>{
+            window.addEventListener(ev, handler);
+        });
+    }
      #generateArticleMarkup() {
         return `<figure class="article__fig">
           <img

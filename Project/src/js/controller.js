@@ -22,11 +22,8 @@ String.prototype.hashCode = function () {
 
 ///////////////////////////////////////
 
-const controlArticles = async function () {
+const controlArticle = async function () {
   try {
-    articleView.renderSpinner();
-    // Loading articles
-    await model.loadArticles();
     const chosenArticleID = window.location.hash.slice(1);
 
     // Get the article with selected ID
@@ -39,6 +36,12 @@ const controlArticles = async function () {
   }
 };
 
-['hashchange', 'load'].forEach(e =>
-  window.addEventListener(e, controlArticles)
-);
+const init = async function () {
+  try {
+    await model.loadArticles();
+    articleView.addHandlerRender(controlArticle);
+  } catch (err) {
+    console.log(err);
+  }
+};
+init();

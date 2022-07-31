@@ -27,6 +27,12 @@ class ArticleView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   };
 
+  addHandlerRender(handler) {
+    ['load', 'hashchange'].forEach(ev => {
+      window.addEventListener(ev, handler);
+    });
+  }
+
   #generateArticleMarkup() {
     return `<figure class="article__fig">
           <img
