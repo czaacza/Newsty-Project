@@ -28,6 +28,7 @@ export const loadArticles = async function () {
     console.log(state.articles);
   } catch (err) {
     console.error(`${err} !!!!`);
+    throw err;
   }
 };
 
@@ -35,7 +36,9 @@ export const loadChosenArticle = function (id) {
   for (let art of state.articles) {
     if (art.id == id) {
       state.chosenArticle = art;
+      console.log('id found');
       return;
     }
   }
+  throw new Error('Invalid article ID.');
 };

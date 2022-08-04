@@ -551,20 +551,27 @@ String.prototype.hashCode = function() {
 };
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-const controlArticle = async function() {
+const controlArticle = function() {
     try {
         const chosenArticleID = window.location.hash.slice(1);
-        // Get the article with selected ID
-        _modelJs.loadChosenArticle(chosenArticleID);
-        // Rendering the article
-        (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
+        if (chosenArticleID === "") {
+            console.log("welcome msg rendered");
+            (0, _articleViewJsDefault.default).renderWelcomeMessage();
+        } else {
+            // Get the article with selected ID
+            _modelJs.loadChosenArticle(chosenArticleID);
+            console.log("article loaded");
+            // Rendering the article
+            (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
+        }
     } catch (err) {
-        alert(err);
+        (0, _articleViewJsDefault.default).renderError(`${err}`);
     }
 };
 const init = async function() {
     try {
         await _modelJs.loadArticles();
+        controlArticle();
         (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
     } catch (err) {
         console.log(err);
@@ -2298,13 +2305,16 @@ const loadArticles = async function() {
         console.log(state.articles);
     } catch (err) {
         console.error(`${err} !!!!`);
+        throw err;
     }
 };
 const loadChosenArticle = function(id) {
     for (let art of state.articles)if (art.id == id) {
         state.chosenArticle = art;
+        console.log("id found");
         return;
     }
+    throw new Error("Invalid article ID.");
 };
 
 },{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs","./helpers":"hGI1E"}],"k5Hzs":[function(require,module,exports) {
@@ -2357,18 +2367,33 @@ class ArticleView {
      #clear() {
         this.#parentElement.innerHTML = "";
     }
-    renderSpinner = function() {
+    renderSpinner() {
         const markup = `<div class="spinner">
           <svg>
             <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
           </svg>
         </div>`;
-        this.#parentElement.innerHTML = "";
+        this.#clear();
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-    };
+    }
+    renderError(message) {
+        const markup = `<div class="error">
+            <div>
+              <svg>
+                <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>`;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderWelcomeMessage() {
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML("afterbegin", this.#generateWelcomeMessageMarkup());
+    }
     addHandlerRender(handler) {
         [
-            "load",
             "hashchange"
         ].forEach((ev)=>{
             window.addEventListener(ev, handler);
@@ -2453,7 +2478,7 @@ class ArticleView {
       </div>
     </div>`;
     }
-     #generateMessageMarkup() {
+     #generateWelcomeMessageMarkup() {
         return `<div class="message">
         <div>
           <svg>

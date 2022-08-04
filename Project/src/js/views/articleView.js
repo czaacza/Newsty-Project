@@ -17,18 +17,39 @@ class ArticleView {
     this.#parentElement.innerHTML = '';
   }
 
-  renderSpinner = function () {
+  renderSpinner() {
     const markup = `<div class="spinner">
           <svg>
             <use href="${icons}#icon-loader"></use>
           </svg>
         </div>`;
-    this.#parentElement.innerHTML = '';
+    this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  };
+  }
+
+  renderError(message) {
+    const markup = `<div class="error">
+            <div>
+              <svg>
+                <use href="${icons}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>`;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderWelcomeMessage() {
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML(
+      'afterbegin',
+      this.#generateWelcomeMessageMarkup()
+    );
+  }
 
   addHandlerRender(handler) {
-    ['load', 'hashchange'].forEach(ev => {
+    ['hashchange'].forEach(ev => {
       window.addEventListener(ev, handler);
     });
   }
@@ -117,7 +138,7 @@ class ArticleView {
     </div>`;
   }
 
-  #generateMessageMarkup() {
+  #generateWelcomeMessageMarkup() {
     return `<div class="message">
         <div>
           <svg>

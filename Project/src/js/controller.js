@@ -22,23 +22,30 @@ String.prototype.hashCode = function () {
 
 ///////////////////////////////////////
 
-const controlArticle = async function () {
+const controlArticle = function () {
   try {
     const chosenArticleID = window.location.hash.slice(1);
 
-    // Get the article with selected ID
-    model.loadChosenArticle(chosenArticleID);
+    if (chosenArticleID === '') {
+      console.log('welcome msg rendered');
+      articleView.renderWelcomeMessage();
+    } else {
+      // Get the article with selected ID
+      model.loadChosenArticle(chosenArticleID);
+      console.log('article loaded');
 
-    // Rendering the article
-    articleView.render(model.state.chosenArticle);
+      // Rendering the article
+      articleView.render(model.state.chosenArticle);
+    }
   } catch (err) {
-    alert(err);
+    articleView.renderError(`${err}`);
   }
 };
 
 const init = async function () {
   try {
     await model.loadArticles();
+    controlArticle();
     articleView.addHandlerRender(controlArticle);
   } catch (err) {
     console.log(err);
