@@ -1,9 +1,9 @@
 import * as model from './model.js';
 import articleView from './views/articleView.js';
+import resultsView from './views/resultsView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-const resultsUl = document.querySelector('.results');
 
 String.prototype.hashCode = function () {
   var hash = 0,
@@ -38,17 +38,29 @@ const controlArticle = function () {
       articleView.render(model.state.chosenArticle);
     }
   } catch (err) {
+    console.log(articleView);
     articleView.renderError(`${err}`);
   }
 };
 
 const init = async function () {
   try {
-    await model.loadArticles();
     controlArticle();
     articleView.addHandlerRender(controlArticle);
   } catch (err) {
     console.log(err);
   }
 };
+
+const formElement = document.querySelector('.search');
+formElement.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const inputField = formElement[0];
+  const searchResult = inputField.value;
+
+  model.clearArticles();
+  await model.loadArticles(searchResult);
+  resultsView.renderResults(model.state.articles);
+});
+
 init();

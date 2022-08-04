@@ -7,10 +7,10 @@ export const state = {
   chosenArticle: {},
 };
 
-export const loadArticles = async function () {
+export const loadArticles = async function (searchItem) {
   try {
     // Creating articles array containing ID
-    const data = await getJSON(API_URL);
+    const data = await getJSON(searchItem);
     for (let i = 0; i < data.articles.length; i++) {
       const art = {
         author: data.articles[i].author,
@@ -30,6 +30,10 @@ export const loadArticles = async function () {
     console.error(`${err} !!!!`);
     throw err;
   }
+};
+
+export const clearArticles = function () {
+  state.articles = [];
 };
 
 export const loadChosenArticle = function (id) {

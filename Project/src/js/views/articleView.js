@@ -36,22 +36,13 @@ class ArticleView {
             </div>
             <p>${message}</p>
           </div>`;
+
+    console.log('ERROR RENDERED');
+    console.log(this.#parentElement);
     this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderError(message) {
-    const markup = ` <div>
-            <svg>
-              <use href="src/img/icons.svg#icon-smile"></use>
-            </svg>
-          </div>
-          <p>${message}</p>
-        </div>`;
-
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
   renderWelcomeMessage() {
     this.#clear();
     this.#parentElement.insertAdjacentHTML(

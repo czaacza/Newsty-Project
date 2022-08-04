@@ -537,8 +537,9 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _modelJs = require("./model.js");
 var _articleViewJs = require("./views/articleView.js");
 var _articleViewJsDefault = parcelHelpers.interopDefault(_articleViewJs);
+var _resultsViewJs = require("./views/resultsView.js");
+var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
 var _runtime = require("regenerator-runtime/runtime");
-const resultsUl = document.querySelector(".results");
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;
@@ -565,21 +566,30 @@ const controlArticle = function() {
             (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
         }
     } catch (err) {
+        console.log((0, _articleViewJsDefault.default));
         (0, _articleViewJsDefault.default).renderError(`${err}`);
     }
 };
 const init = async function() {
     try {
-        await _modelJs.loadArticles();
         controlArticle();
         (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
     } catch (err) {
         console.log(err);
     }
 };
+const formElement = document.querySelector(".search");
+formElement.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const inputField = formElement[0];
+    const searchResult = inputField.value;
+    _modelJs.clearArticles();
+    await _modelJs.loadArticles(searchResult);
+    (0, _resultsViewJsDefault.default).renderResults(_modelJs.state.articles);
+});
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -2276,6 +2286,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
+parcelHelpers.export(exports, "clearArticles", ()=>clearArticles);
 parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
@@ -2284,10 +2295,10 @@ const state = {
     articles: [],
     chosenArticle: {}
 };
-const loadArticles = async function() {
+const loadArticles = async function(searchItem) {
     try {
         // Creating articles array containing ID
-        const data = await (0, _helpers.getJSON)((0, _config.API_URL));
+        const data = await (0, _helpers.getJSON)(searchItem);
         for(let i = 0; i < data.articles.length; i++){
             const art = {
                 author: data.articles[i].author,
@@ -2307,6 +2318,9 @@ const loadArticles = async function() {
         console.error(`${err} !!!!`);
         throw err;
     }
+};
+const clearArticles = function() {
+    state.articles = [];
 };
 const loadChosenArticle = function(id) {
     for (let art of state.articles)if (art.id == id) {
@@ -2337,10 +2351,10 @@ const timeout = function(s) {
         }, s * 1000);
     });
 };
-const getJSON = async function(API_URL) {
+const getJSON = async function(searchItem) {
     try {
         const response = await Promise.race([
-            fetch(API_URL),
+            fetch(`https://newsapi.org/v2/everything?q=${searchItem}&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73`),
             timeout((0, _configJs.TIMEOUT_SECONDS)), 
         ]);
         const data = await response.json();
@@ -2385,17 +2399,8 @@ class ArticleView {
             </div>
             <p>${message}</p>
           </div>`;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    renderError(message) {
-        const markup = ` <div>
-            <svg>
-              <use href="src/img/icons.svg#icon-smile"></use>
-            </svg>
-          </div>
-          <p>${message}</p>
-        </div>`;
+        console.log("ERROR RENDERED");
+        console.log(this.#parentElement);
         this.#clear();
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     }
@@ -2539,6 +2544,43 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{}],"cSbZE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class ResultsView {
+    #parentElement = resultsUl = document.querySelector(".results");
+    #itemsPerPage = 10;
+    #currentPage = 1;
+    renderResults(articles) {
+        this.#parentElement.innerHTML = "";
+        for(let i = 0; i < this.#itemsPerPage; i++){
+            const markup = `<li class="preview">
+            <a class="preview__link preview__link--active" href="#${articles[i].id}">
+              <figure class="preview__fig">
+                <img src="${articles[i].urlToImage}" alt="Test" />
+              </figure>
+              <div class="preview__data">
+                <h4 class="preview__title">${articles[i].title}</h4>
+                <p class="preview__publisher">${articles[i].author}n</p>
+                <div class="preview__user-generated">
+                  <svg>
+                    <use href="src/img/icons.svg#icon-user"></use>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </li>`;
+            this.#parentElement.insertAdjacentHTML("beforeend", markup);
+        }
+    }
+     #displayOnePage(articles) {
+        let loopStart = this.#itemsPerPage * (this.#currentPage - 1);
+    }
+}
+exports.default = new ResultsView();
+
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map

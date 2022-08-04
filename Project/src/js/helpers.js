@@ -8,10 +8,12 @@ const timeout = function (s) {
   });
 };
 
-export const getJSON = async function (API_URL) {
+export const getJSON = async function (searchItem) {
   try {
     const response = await Promise.race([
-      fetch(API_URL),
+      fetch(
+        `https://newsapi.org/v2/everything?q=${searchItem}&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73`
+      ),
       timeout(TIMEOUT_SECONDS),
     ]);
     const data = await response.json();
