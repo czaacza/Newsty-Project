@@ -40,5 +40,7 @@ export const loadChosenArticle = function (id) {
       return;
     }
   }
-  throw new Error('Invalid article ID.');
+  throw new Error(
+    'We could not find that article. Please try with another one.'
+  );
 };

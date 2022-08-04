@@ -2314,7 +2314,7 @@ const loadChosenArticle = function(id) {
         console.log("id found");
         return;
     }
-    throw new Error("Invalid article ID.");
+    throw new Error("We could not find that article. Please try with another one.");
 };
 
 },{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs","./helpers":"hGI1E"}],"k5Hzs":[function(require,module,exports) {
@@ -2385,6 +2385,17 @@ class ArticleView {
             </div>
             <p>${message}</p>
           </div>`;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderError(message) {
+        const markup = ` <div>
+            <svg>
+              <use href="src/img/icons.svg#icon-smile"></use>
+            </svg>
+          </div>
+          <p>${message}</p>
+        </div>`;
         this.#clear();
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     }
