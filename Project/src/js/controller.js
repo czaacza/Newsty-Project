@@ -28,22 +28,22 @@ const controlArticle = function () {
     const chosenArticleID = window.location.hash.slice(1);
 
     if (chosenArticleID === '') {
-      articleView.renderWelcomeMessage();
+      articleView._renderWelcomeMessage();
     } else {
       // Get the article with selected ID
       model.loadChosenArticle(chosenArticleID);
 
       // Rendering the article
-      articleView.render(model.state.chosenArticle);
+      articleView._render(model.state.chosenArticle);
     }
   } catch (err) {
-    articleView.renderError(`${err}`);
+    articleView._renderError(`${err}`);
   }
 };
 
 const init = async function () {
   try {
-    articleView.addHandlerRender(controlArticle);
+    articleView._addHandlerRender(controlArticle);
     searchView.addHandlerSearch(controlSearchResults);
   } catch (err) {
     console.log(err);
@@ -54,9 +54,9 @@ const controlSearchResults = async function () {
   try {
     const query = searchView.getQuery();
 
-    resultsView.renderSpinner();
+    resultsView._renderSpinner();
     await model.loadArticles(query);
-    resultsView.renderResults(model.state.articles);
+    resultsView._render(model.state.articles);
   } catch (err) {
     console.log(err);
   }

@@ -44,7 +44,6 @@ export const loadChosenArticle = function (id) {
   for (let art of state.articles) {
     if (art.id == id) {
       state.chosenArticle = art;
-      console.log('id found');
       return;
     }
   }

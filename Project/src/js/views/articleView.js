@@ -1,70 +1,42 @@
+import View from './View.js';
 import icons from 'url:../../img/icons.svg';
 
-class ArticleView {
-  #parentElement = document.querySelector('.article');
-  #data;
+class ArticleView extends View {
+  _parentElement = document.querySelector('.article');
+  _welcomeMessage = 'Start by searching for an article. Have fun!';
 
-  render(data) {
-    this.#data = data;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML(
+  _renderWelcomeMessage() {
+    this._clear();
+    this._parentElement.insertAdjacentHTML(
       'afterbegin',
-      this.#generateArticleMarkup()
+      this._generateWelcomeMessageMarkup()
     );
   }
 
-  #clear() {
-    this.#parentElement.innerHTML = '';
-  }
-
-  renderSpinner() {
-    const markup = `<div class="spinner">
-          <svg>
-            <use href="${icons}#icon-loader"></use>
-          </svg>
-        </div>`;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  renderError(message) {
-    const markup = `<div class="error">
-            <div>
-              <svg>
-                <use href="${icons}#icon-alert-triangle"></use>
-              </svg>
-            </div>
-            <p>${message}</p>
-          </div>`;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  renderWelcomeMessage() {
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML(
-      'afterbegin',
-      this.#generateWelcomeMessageMarkup()
-    );
-  }
-
-  addHandlerRender(handler) {
+  _addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => {
       window.addEventListener(ev, handler);
     });
   }
 
-  #generateArticleMarkup() {
+  _displayData() {
+    this._parentElement.insertAdjacentHTML(
+      'afterbegin',
+      this._generateMarkup()
+    );
+  }
+
+  _generateMarkup() {
     return `<figure class="article__fig">
           <img
-            src="${this.#data.urlToImage}"
+            src="${this._data.urlToImage}"
             alt="Tomato"
             class="article__img"
           />
         </figure>
         <div class="article__title">
           <p>
-            ${this.#data.title}
+            ${this._data.title}
           </p>
         </div>
 
@@ -74,15 +46,15 @@ class ArticleView {
               <use href="${icons}.svg#icon-clock"></use>
             </svg>
             <span class="article__info-text">${
-              this.#data.publishedAt.split('T')[0]
+              this._data.publishedAt.split('T')[0]
             }</span>
           </div>
           <div class="article__info">
             <svg class="article__info-icon">
               <use href="${icons}.svg#icon-users"></use>
             </svg>
-            <span class="article__info-text">${this.#data.author}, ${
-      this.#data.source.name
+            <span class="article__info-text">${this._data.author}, ${
+      this._data.source.name
     }</span>
           </div>
 
@@ -104,12 +76,12 @@ class ArticleView {
         <div class="article__text">
           <div class="article__description">
             <p>
-              ${this.#data.description}
+              ${this._data.description}
             </p>
           </div>
           <div class="article__content">
             <p>
-              ${this.#data.content}
+              ${this._data.content}
             </p>
           </div>
         </div>
@@ -125,7 +97,7 @@ class ArticleView {
           </p>
           <a
             class="btn--small article__btn"
-            href="${this.#data.url}"
+            href="${this._data.url}"
             target="_blank"
           >
             <span>Article</span>
@@ -138,14 +110,14 @@ class ArticleView {
     </div>`;
   }
 
-  #generateWelcomeMessageMarkup() {
+  _generateWelcomeMessageMarkup() {
     return `<div class="message">
         <div>
           <svg>
             <use href="${icons}.svg#icon-smile"></use>
           </svg>
         </div>
-        <p>Start by searching for an article. Have fun!</p>
+        <p>${this._welcomeMessage}</p>
       </div>;`;
   }
 }

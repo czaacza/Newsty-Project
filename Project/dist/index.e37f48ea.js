@@ -557,20 +557,20 @@ String.prototype.hashCode = function() {
 const controlArticle = function() {
     try {
         const chosenArticleID = window.location.hash.slice(1);
-        if (chosenArticleID === "") (0, _articleViewJsDefault.default).renderWelcomeMessage();
+        if (chosenArticleID === "") (0, _articleViewJsDefault.default)._renderWelcomeMessage();
         else {
             // Get the article with selected ID
             _modelJs.loadChosenArticle(chosenArticleID);
             // Rendering the article
-            (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
+            (0, _articleViewJsDefault.default)._render(_modelJs.state.chosenArticle);
         }
     } catch (err) {
-        (0, _articleViewJsDefault.default).renderError(`${err}`);
+        (0, _articleViewJsDefault.default)._renderError(`${err}`);
     }
 };
 const init = async function() {
     try {
-        (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
+        (0, _articleViewJsDefault.default)._addHandlerRender(controlArticle);
         (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     } catch (err) {
         console.log(err);
@@ -579,9 +579,9 @@ const init = async function() {
 const controlSearchResults = async function() {
     try {
         const query = (0, _searchViewJsDefault.default).getQuery();
-        (0, _resultsViewJsDefault.default).renderSpinner();
+        (0, _resultsViewJsDefault.default)._renderSpinner();
         await _modelJs.loadArticles(query);
-        (0, _resultsViewJsDefault.default).renderResults(_modelJs.state.articles);
+        (0, _resultsViewJsDefault.default)._render(_modelJs.state.articles);
     } catch (err) {
         console.log(err);
     }
@@ -2327,7 +2327,6 @@ const clearArticles = function() {
 const loadChosenArticle = function(id) {
     for (let art of state.articles)if (art.id == id) {
         state.chosenArticle = art;
-        console.log("id found");
         return;
     }
     throw new Error("We could not find that article. Please try with another one.");
@@ -2368,45 +2367,18 @@ const TIMEOUT_SECONDS = 10;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class ArticleView {
-    #parentElement = document.querySelector(".article");
-    #data;
-    render(data) {
-        this.#data = data;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", this.#generateArticleMarkup());
+class ArticleView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".article");
+    _welcomeMessage = "Start by searching for an article. Have fun!";
+    _renderWelcomeMessage() {
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", this._generateWelcomeMessageMarkup());
     }
-     #clear() {
-        this.#parentElement.innerHTML = "";
-    }
-    renderSpinner() {
-        const markup = `<div class="spinner">
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-          </svg>
-        </div>`;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    renderError(message) {
-        const markup = `<div class="error">
-            <div>
-              <svg>
-                <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
-              </svg>
-            </div>
-            <p>${message}</p>
-          </div>`;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    renderWelcomeMessage() {
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", this.#generateWelcomeMessageMarkup());
-    }
-    addHandlerRender(handler) {
+    _addHandlerRender(handler) {
         [
             "hashchange",
             "load"
@@ -2414,17 +2386,20 @@ class ArticleView {
             window.addEventListener(ev, handler);
         });
     }
-     #generateArticleMarkup() {
+    _displayData() {
+        this._parentElement.insertAdjacentHTML("afterbegin", this._generateMarkup());
+    }
+    _generateMarkup() {
         return `<figure class="article__fig">
           <img
-            src="${this.#data.urlToImage}"
+            src="${this._data.urlToImage}"
             alt="Tomato"
             class="article__img"
           />
         </figure>
         <div class="article__title">
           <p>
-            ${this.#data.title}
+            ${this._data.title}
           </p>
         </div>
 
@@ -2433,13 +2408,13 @@ class ArticleView {
             <svg class="article__info-icon">
               <use href="${0, _iconsSvgDefault.default}.svg#icon-clock"></use>
             </svg>
-            <span class="article__info-text">${this.#data.publishedAt.split("T")[0]}</span>
+            <span class="article__info-text">${this._data.publishedAt.split("T")[0]}</span>
           </div>
           <div class="article__info">
             <svg class="article__info-icon">
               <use href="${0, _iconsSvgDefault.default}.svg#icon-users"></use>
             </svg>
-            <span class="article__info-text">${this.#data.author}, ${this.#data.source.name}</span>
+            <span class="article__info-text">${this._data.author}, ${this._data.source.name}</span>
           </div>
 
           <div class="article__user-generated">
@@ -2460,12 +2435,12 @@ class ArticleView {
         <div class="article__text">
           <div class="article__description">
             <p>
-              ${this.#data.description}
+              ${this._data.description}
             </p>
           </div>
           <div class="article__content">
             <p>
-              ${this.#data.content}
+              ${this._data.content}
             </p>
           </div>
         </div>
@@ -2481,7 +2456,7 @@ class ArticleView {
           </p>
           <a
             class="btn--small article__btn"
-            href="${this.#data.url}"
+            href="${this._data.url}"
             target="_blank"
           >
             <span>Article</span>
@@ -2493,20 +2468,59 @@ class ArticleView {
       </div>
     </div>`;
     }
-     #generateWelcomeMessageMarkup() {
+    _generateWelcomeMessageMarkup() {
         return `<div class="message">
         <div>
           <svg>
             <use href="${0, _iconsSvgDefault.default}.svg#icon-smile"></use>
           </svg>
         </div>
-        <p>Start by searching for an article. Have fun!</p>
+        <p>${this._welcomeMessage}</p>
       </div>;`;
     }
 }
 exports.default = new ArticleView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../../img/icons.svg":"loVOp"}],"loVOp":[function(require,module,exports) {
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5cUXS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class View {
+    _data;
+    _render(_data) {
+        this._data = _data;
+        this._clear();
+        this._displayData();
+    }
+    _clear() {
+        this._parentElement.innerHTML = "";
+    }
+    _renderSpinner() {
+        const markup = `<div class="spinner">
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+          </svg>
+        </div>`;
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    _renderError(message) {
+        const markup = `<div class="error">
+            <div>
+              <svg>
+                <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>`;
+        this._clear();
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+}
+exports.default = View;
+
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"loVOp":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("hWUTQ") + "icons.dfd7a6db.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -2546,26 +2560,31 @@ exports.getOrigin = getOrigin;
 },{}],"cSbZE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class ResultsView {
-    #parentElement = document.querySelector(".results");
-    #paginationElement = document.querySelector(".pagination");
+class ResultsView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".results");
+    _paginationElement = document.querySelector(".pagination");
     #prevButtonElement;
     #nextButtonElement;
     #itemsPerPage = 10;
     #currentPage = 1;
-    #articles;
-    renderResults(articles) {
-        this.#articles = articles;
-        this.#clear();
-        this.#displayPage();
+    // _render(articles) {
+    //   this._data = articles;
+    //   this.#clear();
+    //   this.#displayPage();
+    //   this.#displayPagination();
+    // }
+    _displayData() {
+        this.#displayResults();
         this.#displayPagination();
     }
-     #displayPage() {
+     #displayResults() {
         let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
         let endIndex = startIndex + this.#itemsPerPage;
-        let paginatedItems = this.#articles.slice(startIndex, endIndex);
+        let paginatedItems = this._data.slice(startIndex, endIndex);
         for (let item of paginatedItems){
             const itemMarkup = `<li class="preview">
             <a class="preview__link preview__link--active" href="#${item.id}">
@@ -2583,16 +2602,16 @@ class ResultsView {
               </div>
             </a>
           </li>`;
-            this.#parentElement.insertAdjacentHTML("beforeend", itemMarkup);
+            this._parentElement.insertAdjacentHTML("beforeend", itemMarkup);
         }
     }
      #displayPagination() {
-        this.#paginationElement.innerHTML = "";
+        this._paginationElement.innerHTML = "";
         // create buttons
         this.#createPaginationButtons();
-        if (this.#currentPage > 1) this.#paginationElement.appendChild(this.#prevButtonElement);
-        if (this.#currentPage < this.#articles.length / this.#itemsPerPage) this.#paginationElement.appendChild(this.#nextButtonElement);
-        this.addButtonsListeners();
+        if (this.#currentPage > 1) this._paginationElement.appendChild(this.#prevButtonElement);
+        if (this.#currentPage < this._data.length / this.#itemsPerPage) this._paginationElement.appendChild(this.#nextButtonElement);
+        this._addButtonsListeners();
     }
      #createPaginationButtons() {
         const prevButtonElement = document.createElement("button");
@@ -2613,49 +2632,40 @@ class ResultsView {
         this.#prevButtonElement = prevButtonElement;
         this.#nextButtonElement = nextButtonElement;
     }
-    addButtonsHandler(handler) {}
-    addButtonsListeners() {
+    _addButtonsHandler(handler) {}
+    _addButtonsListeners() {
         if (this.#prevButtonElement) this.#prevButtonElement.addEventListener("click", (function() {
             this.#currentPage--;
-            this.renderResults(this.#articles);
+            this._render(this._data);
         }).bind(this));
         if (this.#nextButtonElement) this.#nextButtonElement.addEventListener("click", (function() {
             this.#currentPage++;
-            this.renderResults(this.#articles);
+            this._render(this._data);
         }).bind(this));
     }
      #clear() {
-        this.#parentElement.innerHTML = "";
-    }
-    renderSpinner() {
-        const markup = `<div class="spinner">
-          <svg>
-            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
-          </svg>
-        </div>`;
-        this.#clear();
-        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+        this._parentElement.innerHTML = "";
     }
 }
 exports.default = new ResultsView();
 
-},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9OQAM":[function(require,module,exports) {
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./View.js":"5cUXS"}],"9OQAM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class SearchView {
-    #parentElement = document.querySelector(".search");
+    parentElement = document.querySelector(".search");
     getQuery() {
-        return this.#parentElement.querySelector(".search__field").value;
+        return this.parentElement.querySelector(".search__field").value;
     }
     addHandlerSearch(handler) {
-        this.#parentElement.addEventListener("submit", (function(e) {
+        this.parentElement.addEventListener("submit", (function(e) {
             e.preventDefault();
             handler();
-            this.#clearInput();
+            this._clearInput();
         }).bind(this));
     }
-     #clearInput() {
-        this.#parentElement.querySelector(".search__field").value = "";
+    _clearInput() {
+        this.parentElement.querySelector(".search__field").value = "";
     }
 }
 exports.default = new SearchView();

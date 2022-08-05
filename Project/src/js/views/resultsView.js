@@ -1,26 +1,30 @@
+import View from './View.js';
 import icons from 'url:../../img/icons.svg';
-class ResultsView {
-  #parentElement = document.querySelector('.results');
-  #paginationElement = document.querySelector('.pagination');
+class ResultsView extends View {
+  _parentElement = document.querySelector('.results');
+  _paginationElement = document.querySelector('.pagination');
   #prevButtonElement;
   #nextButtonElement;
   #itemsPerPage = 10;
   #currentPage = 1;
 
-  #articles;
+  // _render(articles) {
+  //   this._data = articles;
+  //   this.#clear();
 
-  renderResults(articles) {
-    this.#articles = articles;
-    this.#clear();
+  //   this.#displayPage();
+  //   this.#displayPagination();
+  // }
 
-    this.#displayPage();
+  _displayData() {
+    this.#displayResults();
     this.#displayPagination();
   }
 
-  #displayPage() {
+  #displayResults() {
     let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
     let endIndex = startIndex + this.#itemsPerPage;
-    let paginatedItems = this.#articles.slice(startIndex, endIndex);
+    let paginatedItems = this._data.slice(startIndex, endIndex);
     for (let item of paginatedItems) {
       const itemMarkup = `<li class="preview">
             <a class="preview__link preview__link--active" href="#${item.id}">
@@ -40,24 +44,24 @@ class ResultsView {
               </div>
             </a>
           </li>`;
-      this.#parentElement.insertAdjacentHTML('beforeend', itemMarkup);
+      this._parentElement.insertAdjacentHTML('beforeend', itemMarkup);
     }
   }
 
   #displayPagination() {
-    this.#paginationElement.innerHTML = '';
+    this._paginationElement.innerHTML = '';
     // create buttons
     this.#createPaginationButtons();
 
     if (this.#currentPage > 1) {
-      this.#paginationElement.appendChild(this.#prevButtonElement);
+      this._paginationElement.appendChild(this.#prevButtonElement);
     }
 
-    if (this.#currentPage < this.#articles.length / this.#itemsPerPage) {
-      this.#paginationElement.appendChild(this.#nextButtonElement);
+    if (this.#currentPage < this._data.length / this.#itemsPerPage) {
+      this._paginationElement.appendChild(this.#nextButtonElement);
     }
 
-    this.addButtonsListeners();
+    this._addButtonsListeners();
   }
 
   #createPaginationButtons() {
@@ -83,15 +87,15 @@ class ResultsView {
     this.#nextButtonElement = nextButtonElement;
   }
 
-  addButtonsHandler(handler) {}
+  _addButtonsHandler(handler) {}
 
-  addButtonsListeners() {
+  _addButtonsListeners() {
     if (this.#prevButtonElement) {
       this.#prevButtonElement.addEventListener(
         'click',
         function () {
           this.#currentPage--;
-          this.renderResults(this.#articles);
+          this._render(this._data);
         }.bind(this)
       );
     }
@@ -100,24 +104,14 @@ class ResultsView {
         'click',
         function () {
           this.#currentPage++;
-          this.renderResults(this.#articles);
+          this._render(this._data);
         }.bind(this)
       );
     }
   }
 
   #clear() {
-    this.#parentElement.innerHTML = '';
-  }
-
-  renderSpinner() {
-    const markup = `<div class="spinner">
-          <svg>
-            <use href="${icons}#icon-loader"></use>
-          </svg>
-        </div>`;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    this._parentElement.innerHTML = '';
   }
 }
 
