@@ -658,6 +658,7 @@ body {
 }
 
 .article__text {
+  height: 25.5rem;
   text-align: justify;
   background-color: #f2efee;
   padding: 1rem 8rem 8rem;

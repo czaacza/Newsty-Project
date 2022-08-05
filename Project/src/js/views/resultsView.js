@@ -29,7 +29,9 @@ class ResultsView {
               </figure>
               <div class="preview__data">
                 <h4 class="preview__title">${item.title}</h4>
-                <p class="preview__publisher">${item.author}n</p>
+                <p class="preview__publisher">${
+                  item.author != null ? item.author.slice(0, 40) : ''
+                }</p>
                 <div class="preview__user-generated">
                   <svg>
                     <use href="src/img/icons.svg#icon-user"></use>
@@ -43,6 +45,7 @@ class ResultsView {
   }
 
   #displayPagination() {
+    this.#paginationElement.innerHTML = '';
     // create buttons
     this.#createPaginationButtons();
 
@@ -88,6 +91,7 @@ class ResultsView {
         'click',
         function () {
           this.#currentPage--;
+          this.renderResults(this.#articles);
         }.bind(this)
       );
     }
@@ -96,6 +100,7 @@ class ResultsView {
         'click',
         function () {
           this.#currentPage++;
+          this.renderResults(this.#articles);
         }.bind(this)
       );
     }
