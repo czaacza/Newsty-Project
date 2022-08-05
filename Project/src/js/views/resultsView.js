@@ -17,11 +17,11 @@ class ResultsView extends View {
   // }
 
   _displayData() {
-    this.#displayResults();
+    this._displayResults();
     this.#displayPagination();
   }
 
-  #displayResults() {
+  _displayResults() {
     let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
     let endIndex = startIndex + this.#itemsPerPage;
     let paginatedItems = this._data.slice(startIndex, endIndex);

@@ -2452,7 +2452,7 @@ class ArticleView extends (0, _viewJsDefault.default) {
             <span class="article__publisher">Google News API</span>.
           </p>
           <p class="article__direction-text-ending">
-            Check the whole article here!
+            Check the full article here!
           </p>
           <a
             class="btn--small article__btn"
@@ -2489,6 +2489,7 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class View {
     _data;
     _render(_data) {
+        if (!_data || Array.isArray && _data.length === 0) return this._renderError("No articles found for your query! Please try again.");
         this._data = _data;
         this._clear();
         this._displayData();
@@ -2578,10 +2579,10 @@ class ResultsView extends (0, _viewJsDefault.default) {
     //   this.#displayPagination();
     // }
     _displayData() {
-        this.#displayResults();
+        this._displayResults();
         this.#displayPagination();
     }
-     #displayResults() {
+    _displayResults() {
         let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
         let endIndex = startIndex + this.#itemsPerPage;
         let paginatedItems = this._data.slice(startIndex, endIndex);

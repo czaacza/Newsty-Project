@@ -42,9 +42,10 @@
   &:visited {
     @extend %btn;
 
-    font-size: 1.4rem;
+    text-align: center;
+    font-size: 1.6rem;
     font-weight: 600;
-    padding: 1.25rem 2.25rem;
+    padding: 1.5rem 2.5rem;
     text-decoration: none;
 
     svg {
@@ -59,7 +60,7 @@
   color: $color-primary;
   font-family: Nunito Sans, sans-serif;
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
   background-color: $color-grey-light-1;
   padding: 0.8rem 1.2rem;

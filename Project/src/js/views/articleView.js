@@ -93,7 +93,7 @@ class ArticleView extends View {
             <span class="article__publisher">Google News API</span>.
           </p>
           <p class="article__direction-text-ending">
-            Check the whole article here!
+            Check the full article here!
           </p>
           <a
             class="btn--small article__btn"

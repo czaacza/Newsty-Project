@@ -3,6 +3,11 @@ export default class View {
   _data;
 
   _render(_data) {
+    if (!_data || (Array.isArray && _data.length === 0)) {
+      return this._renderError(
+        'No articles found for your query! Please try again.'
+      );
+    }
     this._data = _data;
     this._clear();
 
