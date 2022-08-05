@@ -555,18 +555,14 @@ String.prototype.hashCode = function() {
 const controlArticle = function() {
     try {
         const chosenArticleID = window.location.hash.slice(1);
-        if (chosenArticleID === "") {
-            console.log("welcome msg rendered");
-            (0, _articleViewJsDefault.default).renderWelcomeMessage();
-        } else {
+        if (chosenArticleID === "") (0, _articleViewJsDefault.default).renderWelcomeMessage();
+        else {
             // Get the article with selected ID
             _modelJs.loadChosenArticle(chosenArticleID);
-            console.log("article loaded");
             // Rendering the article
             (0, _articleViewJsDefault.default).render(_modelJs.state.chosenArticle);
         }
     } catch (err) {
-        console.log((0, _articleViewJsDefault.default));
         (0, _articleViewJsDefault.default).renderError(`${err}`);
     }
 };
@@ -2399,8 +2395,6 @@ class ArticleView {
             </div>
             <p>${message}</p>
           </div>`;
-        console.log("ERROR RENDERED");
-        console.log(this.#parentElement);
         this.#clear();
         this.#parentElement.insertAdjacentHTML("afterbegin", markup);
     }
@@ -2550,20 +2544,32 @@ parcelHelpers.defineInteropFlag(exports);
 var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ResultsView {
-    #parentElement = resultsUl = document.querySelector(".results");
+    #parentElement = document.querySelector(".results");
+    #paginationElement = document.querySelector(".pagination");
+    #prevButtonElement;
+    #nextButtonElement;
     #itemsPerPage = 10;
     #currentPage = 1;
+    #articles;
     renderResults(articles) {
+        this.#articles = articles;
         this.#parentElement.innerHTML = "";
-        for(let i = 0; i < this.#itemsPerPage; i++){
-            const markup = `<li class="preview">
-            <a class="preview__link preview__link--active" href="#${articles[i].id}">
+        this.#displayPage();
+        this.#displayPagination();
+    }
+     #displayPage() {
+        let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
+        let endIndex = startIndex + this.#itemsPerPage;
+        let paginatedItems = this.#articles.slice(startIndex, endIndex);
+        for (let item of paginatedItems){
+            const itemMarkup = `<li class="preview">
+            <a class="preview__link preview__link--active" href="#${item.id}">
               <figure class="preview__fig">
-                <img src="${articles[i].urlToImage}" alt="Test" />
+                <img src="${item.urlToImage}" alt="Test" />
               </figure>
               <div class="preview__data">
-                <h4 class="preview__title">${articles[i].title}</h4>
-                <p class="preview__publisher">${articles[i].author}n</p>
+                <h4 class="preview__title">${item.title}</h4>
+                <p class="preview__publisher">${item.author}n</p>
                 <div class="preview__user-generated">
                   <svg>
                     <use href="src/img/icons.svg#icon-user"></use>
@@ -2572,11 +2578,43 @@ class ResultsView {
               </div>
             </a>
           </li>`;
-            this.#parentElement.insertAdjacentHTML("beforeend", markup);
+            this.#parentElement.insertAdjacentHTML("beforeend", itemMarkup);
         }
     }
-     #displayOnePage(articles) {
-        let loopStart = this.#itemsPerPage * (this.#currentPage - 1);
+     #displayPagination() {
+        // create buttons
+        this.#createPaginationButtons();
+        if (this.#currentPage > 1) this.#paginationElement.appendChild(this.#prevButtonElement);
+        if (this.#currentPage < this.#articles.length / this.#itemsPerPage) this.#paginationElement.appendChild(this.#nextButtonElement);
+        this.addButtonsListeners();
+    }
+     #createPaginationButtons() {
+        const prevButtonElement = document.createElement("button");
+        prevButtonElement.classList.add("btn--inline", "pagination__btn--prev");
+        const prevButtonInsideMarkup = `<svg class="search__icon">
+                <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-left"></use>
+              </svg>
+              <span>Page ${this.#currentPage - 1}</span>`;
+        prevButtonElement.innerHTML = prevButtonInsideMarkup;
+        // create nextButtonElement
+        const nextButtonElement = document.createElement("button");
+        nextButtonElement.classList.add("btn--inline", "pagination__btn--next");
+        let nextButtonInsideMarkup = `<span>Page ${this.#currentPage + 1}</span>
+    <svg class="search__icon">
+    <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-right"></use>
+    </svg>`;
+        nextButtonElement.innerHTML = nextButtonInsideMarkup;
+        this.#prevButtonElement = prevButtonElement;
+        this.#nextButtonElement = nextButtonElement;
+    }
+    addButtonsHandler(handler) {}
+    addButtonsListeners() {
+        if (this.#prevButtonElement) this.#prevButtonElement.addEventListener("click", (function() {
+            this.#currentPage--;
+        }).bind(this));
+        if (this.#nextButtonElement) this.#nextButtonElement.addEventListener("click", (function() {
+            this.#currentPage++;
+        }).bind(this));
     }
 }
 exports.default = new ResultsView();

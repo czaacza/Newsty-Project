@@ -36,9 +36,6 @@ class ArticleView {
             </div>
             <p>${message}</p>
           </div>`;
-
-    console.log('ERROR RENDERED');
-    console.log(this.#parentElement);
     this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }

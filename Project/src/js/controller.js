@@ -27,18 +27,15 @@ const controlArticle = function () {
     const chosenArticleID = window.location.hash.slice(1);
 
     if (chosenArticleID === '') {
-      console.log('welcome msg rendered');
       articleView.renderWelcomeMessage();
     } else {
       // Get the article with selected ID
       model.loadChosenArticle(chosenArticleID);
-      console.log('article loaded');
 
       // Rendering the article
       articleView.render(model.state.chosenArticle);
     }
   } catch (err) {
-    console.log(articleView);
     articleView.renderError(`${err}`);
   }
 };
