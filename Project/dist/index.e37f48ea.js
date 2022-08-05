@@ -537,6 +537,8 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _modelJs = require("./model.js");
 var _articleViewJs = require("./views/articleView.js");
 var _articleViewJsDefault = parcelHelpers.interopDefault(_articleViewJs);
+var _searchViewJs = require("./views/searchView.js");
+var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
 var _resultsViewJs = require("./views/resultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
 var _runtime = require("regenerator-runtime/runtime");
@@ -568,24 +570,25 @@ const controlArticle = function() {
 };
 const init = async function() {
     try {
-        controlArticle();
         (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
+        (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
     } catch (err) {
         console.log(err);
     }
 };
-const formElement = document.querySelector(".search");
-formElement.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const inputField = formElement[0];
-    const searchResult = inputField.value;
-    _modelJs.clearArticles();
-    await _modelJs.loadArticles(searchResult);
-    (0, _resultsViewJsDefault.default).renderResults(_modelJs.state.articles);
-});
+const controlSearchResults = async function() {
+    try {
+        const query = (0, _searchViewJsDefault.default).getQuery();
+        (0, _resultsViewJsDefault.default).renderSpinner();
+        await _modelJs.loadArticles(query);
+        (0, _resultsViewJsDefault.default).renderResults(_modelJs.state.articles);
+    } catch (err) {
+        console.log(err);
+    }
+};
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE","./views/searchView.js":"9OQAM"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -2282,19 +2285,22 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
-parcelHelpers.export(exports, "clearArticles", ()=>clearArticles);
 parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
 var _regeneratorRuntime = require("regenerator-runtime");
-var _config = require("./config");
 var _helpers = require("./helpers");
 const state = {
     articles: [],
-    chosenArticle: {}
+    chosenArticle: {},
+    search: {
+        query: ""
+    }
 };
-const loadArticles = async function(searchItem) {
+const loadArticles = async function(query) {
     try {
+        clearArticles();
+        state.search.query = query;
         // Creating articles array containing ID
-        const data = await (0, _helpers.getJSON)(searchItem);
+        const data = await (0, _helpers.getJSON)(query);
         for(let i = 0; i < data.articles.length; i++){
             const art = {
                 author: data.articles[i].author,
@@ -2327,15 +2333,7 @@ const loadChosenArticle = function(id) {
     throw new Error("We could not find that article. Please try with another one.");
 };
 
-},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs","./helpers":"hGI1E"}],"k5Hzs":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "API_URL", ()=>API_URL);
-parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
-const API_URL = "https://newsapi.org/v2/everything?q=Samsung&language=en&from=2022-07-27&sortBy=popularity&apiKey=dc297ae8299e47b7b6f153d8f0dd2d73";
-const TIMEOUT_SECONDS = 10;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hGI1E":[function(require,module,exports) {
+},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E"}],"hGI1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON);
@@ -2361,7 +2359,13 @@ const getJSON = async function(searchItem) {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"5jNgA":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"k5Hzs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
+const TIMEOUT_SECONDS = 10;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _iconsSvg = require("url:../../img/icons.svg");
@@ -2404,7 +2408,8 @@ class ArticleView {
     }
     addHandlerRender(handler) {
         [
-            "hashchange"
+            "hashchange",
+            "load"
         ].forEach((ev)=>{
             window.addEventListener(ev, handler);
         });
@@ -2553,7 +2558,7 @@ class ResultsView {
     #articles;
     renderResults(articles) {
         this.#articles = articles;
-        this.#parentElement.innerHTML = "";
+        this.#clear();
         this.#displayPage();
         this.#displayPagination();
     }
@@ -2619,9 +2624,42 @@ class ResultsView {
             this.renderResults(this.#articles);
         }).bind(this));
     }
+     #clear() {
+        this.#parentElement.innerHTML = "";
+    }
+    renderSpinner() {
+        const markup = `<div class="spinner">
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}#icon-loader"></use>
+          </svg>
+        </div>`;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
 }
 exports.default = new ResultsView();
 
-},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9OQAM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class SearchView {
+    #parentElement = document.querySelector(".search");
+    getQuery() {
+        return this.#parentElement.querySelector(".search__field").value;
+    }
+    addHandlerSearch(handler) {
+        this.#parentElement.addEventListener("submit", (function(e) {
+            e.preventDefault();
+            handler();
+            this.#clearInput();
+        }).bind(this));
+    }
+     #clearInput() {
+        this.#parentElement.querySelector(".search__field").value = "";
+    }
+}
+exports.default = new SearchView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map

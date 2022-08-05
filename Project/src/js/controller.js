@@ -1,5 +1,6 @@
 import * as model from './model.js';
 import articleView from './views/articleView.js';
+import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 
 import 'core-js/stable';
@@ -42,22 +43,23 @@ const controlArticle = function () {
 
 const init = async function () {
   try {
-    controlArticle();
     articleView.addHandlerRender(controlArticle);
+    searchView.addHandlerSearch(controlSearchResults);
   } catch (err) {
     console.log(err);
   }
 };
 
-const formElement = document.querySelector('.search');
-formElement.addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const inputField = formElement[0];
-  const searchResult = inputField.value;
+const controlSearchResults = async function () {
+  try {
+    const query = searchView.getQuery();
 
-  model.clearArticles();
-  await model.loadArticles(searchResult);
-  resultsView.renderResults(model.state.articles);
-});
+    resultsView.renderSpinner();
+    await model.loadArticles(query);
+    resultsView.renderResults(model.state.articles);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 init();

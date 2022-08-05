@@ -49,7 +49,7 @@ class ArticleView {
   }
 
   addHandlerRender(handler) {
-    ['hashchange'].forEach(ev => {
+    ['hashchange', 'load'].forEach(ev => {
       window.addEventListener(ev, handler);
     });
   }

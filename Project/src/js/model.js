@@ -1,16 +1,20 @@
 import { async } from 'regenerator-runtime';
-import { API_URL } from './config';
 import { getJSON } from './helpers';
 
 export const state = {
   articles: [],
   chosenArticle: {},
+  search: {
+    query: '',
+  },
 };
 
-export const loadArticles = async function (searchItem) {
+export const loadArticles = async function (query) {
   try {
+    clearArticles();
+    state.search.query = query;
     // Creating articles array containing ID
-    const data = await getJSON(searchItem);
+    const data = await getJSON(query);
     for (let i = 0; i < data.articles.length; i++) {
       const art = {
         author: data.articles[i].author,
@@ -32,7 +36,7 @@ export const loadArticles = async function (searchItem) {
   }
 };
 
-export const clearArticles = function () {
+const clearArticles = function () {
   state.articles = [];
 };
 
