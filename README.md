@@ -1,2 +1,2 @@
 # Newsty-Project
-JavaScript news displaying website using newsAPI
+JavaScript news website using newsAPI
