@@ -583,13 +583,13 @@ const controlSearchResults = async function() {
 };
 const controlPrevButton = function() {
     _modelJs.state.search.currentPage--;
-    console.log(_modelJs.state.search.currentPage);
     (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
+    (0, _paginationViewJsDefault.default)._render(_modelJs.state.search);
 };
 const controlNextButton = function() {
     _modelJs.state.search.currentPage++;
-    console.log(_modelJs.state.search.currentPage);
     (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
+    (0, _paginationViewJsDefault.default)._render(_modelJs.state.search);
 };
 const init = async function() {
     try {

@@ -10,13 +10,11 @@ class PaginationView extends View {
     const numPages = Math.ceil(
       this._data.articles.length / this._data.resultsPerPage
     );
-
     this._createButtons();
 
     if (this._data.currentPage > 1) {
       this._parentElement.appendChild(this._prevButtonElement);
     }
-
     if (this._data.currentPage < numPages && numPages > 1) {
       this._parentElement.appendChild(this._nextButtonElement);
     }

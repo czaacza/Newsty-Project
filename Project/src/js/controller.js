@@ -60,14 +60,14 @@ const controlSearchResults = async function () {
 
 const controlPrevButton = function () {
   model.state.search.currentPage--;
-  console.log(model.state.search.currentPage);
   resultsView._render(model.getSearchResultsPage());
+  paginationView._render(model.state.search);
 };
 
 const controlNextButton = function () {
   model.state.search.currentPage++;
-  console.log(model.state.search.currentPage);
   resultsView._render(model.getSearchResultsPage());
+  paginationView._render(model.state.search);
 };
 
 const init = async function () {
