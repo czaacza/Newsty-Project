@@ -573,6 +573,7 @@ const controlArticle = function() {
 const controlSearchResults = async function() {
     try {
         const query = (0, _searchViewJsDefault.default).getQuery();
+        _modelJs.state.search.currentPage = 1;
         (0, _resultsViewJsDefault.default)._renderSpinner();
         await _modelJs.loadArticles(query);
         (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
@@ -591,9 +592,29 @@ const controlNextButton = function() {
     (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
     (0, _paginationViewJsDefault.default)._render(_modelJs.state.search);
 };
+// const controlAddBookmark = function () {
+//   model.addBookmark(model.state.chosenArticle);
+//   console.log('bookmark added');
+// };
+// const controlRemoveBookmark = function () {
+//   model.removeBookmark(model.state.chosenArticle);
+//   console.log('bookmark removed');
+// };
+controlBookmark = function() {
+    let isBookmarked;
+    if (!_modelJs.state.chosenArticle.bookmarked) {
+        _modelJs.addBookmark(_modelJs.state.chosenArticle);
+        isBookmarked = true;
+    } else {
+        _modelJs.removeBookmark(_modelJs.state.chosenArticle);
+        isBookmarked = false;
+    }
+    (0, _articleViewJsDefault.default)._renderBookmarkIcon(isBookmarked);
+};
 const init = async function() {
     try {
-        (0, _articleViewJsDefault.default)._addHandlerRender(controlArticle);
+        (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
+        (0, _articleViewJsDefault.default).addHandlerAddBookmark(controlBookmark);
         (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
         (0, _paginationViewJsDefault.default).addHandlerButtons(controlPrevButton, controlNextButton);
     } catch (err) {
@@ -2301,6 +2322,8 @@ parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
 parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
+parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
+parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
 var _helpers = require("./helpers");
@@ -2311,7 +2334,8 @@ const state = {
         query: "",
         resultsPerPage: (0, _config.RESULTS_PER_PAGE),
         currentPage: 1
-    }
+    },
+    bookmarks: []
 };
 const loadArticles = async function(query) {
     try {
@@ -2354,6 +2378,14 @@ const getSearchResultsPage = function(page = state.search.currentPage) {
     let startIndex = state.search.resultsPerPage * (page - 1);
     let endIndex = startIndex + state.search.resultsPerPage;
     return state.search.articles.slice(startIndex, endIndex);
+};
+const addBookmark = function(article) {
+    state.bookmarks.push(article);
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
+};
+const removeBookmark = function(article) {
+    state.bookmarks.pop(article);
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
 };
 
 },{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E","./config":"k5Hzs"}],"hGI1E":[function(require,module,exports) {
@@ -2400,11 +2432,15 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ArticleView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".article");
     _welcomeMessage = "Start by searching for an article. Have fun!";
+    _bookmarkButtonElement;
+    _displayData() {
+        this._parentElement.insertAdjacentHTML("afterbegin", this._generateMarkup());
+    }
     _renderWelcomeMessage() {
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", this._generateWelcomeMessageMarkup());
     }
-    _addHandlerRender(handler) {
+    addHandlerRender(handler, bookmarkHandler) {
         [
             "hashchange",
             "load"
@@ -2412,8 +2448,25 @@ class ArticleView extends (0, _viewJsDefault.default) {
             window.addEventListener(ev, handler);
         });
     }
-    _displayData() {
-        this._parentElement.insertAdjacentHTML("afterbegin", this._generateMarkup());
+    addHandlerAddBookmark(handler) {
+        this._parentElement.addEventListener("click", (function(e) {
+            const bookmarkButton = e.target.closest(".btn--bookmark");
+            if (bookmarkButton) {
+                this._bookmarkButtonElement = bookmarkButton;
+                console.log(this._bookmarkButtonElement);
+                handler();
+            }
+        }).bind(this));
+    }
+    _renderBookmarkIcon(isBookmarked) {
+        let markup;
+        if (isBookmarked) markup = `<svg class="">
+                   <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark-fill"></use>
+                </svg>`;
+        else markup = `<svg class="">
+                   <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark"></use>
+                </svg>`;
+        this._bookmarkButtonElement.innerHTML = markup;
     }
     _generateMarkup() {
         return `<figure class="article__fig">
@@ -2448,9 +2501,9 @@ class ArticleView extends (0, _viewJsDefault.default) {
               <use href="${0, _iconsSvgDefault.default}.svg#icon-user"></use>
             </svg>
           </div>
-          <button class="btn--round">
+          <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark-fill"></use>
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark"></use>
             </svg>
           </button>
         </div>

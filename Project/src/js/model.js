@@ -10,6 +10,7 @@ export const state = {
     resultsPerPage: RESULTS_PER_PAGE,
     currentPage: 1,
   },
+  bookmarks: [],
 };
 
 export const loadArticles = async function (query) {
@@ -61,4 +62,20 @@ export const getSearchResultsPage = function (page = state.search.currentPage) {
   let endIndex = startIndex + state.search.resultsPerPage;
 
   return state.search.articles.slice(startIndex, endIndex);
+};
+
+export const addBookmark = function (article) {
+  state.bookmarks.push(article);
+
+  if (article.id === state.chosenArticle.id) {
+    state.chosenArticle.bookmarked = true;
+  }
+};
+
+export const removeBookmark = function (article) {
+  state.bookmarks.pop(article);
+
+  if (article.id === state.chosenArticle.id) {
+    state.chosenArticle.bookmarked = false;
+  }
 };

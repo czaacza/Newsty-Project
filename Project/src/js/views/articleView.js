@@ -4,6 +4,14 @@ import icons from 'url:../../img/icons.svg';
 class ArticleView extends View {
   _parentElement = document.querySelector('.article');
   _welcomeMessage = 'Start by searching for an article. Have fun!';
+  _bookmarkButtonElement;
+
+  _displayData() {
+    this._parentElement.insertAdjacentHTML(
+      'afterbegin',
+      this._generateMarkup()
+    );
+  }
 
   _renderWelcomeMessage() {
     this._clear();
@@ -13,17 +21,39 @@ class ArticleView extends View {
     );
   }
 
-  _addHandlerRender(handler) {
+  addHandlerRender(handler, bookmarkHandler) {
     ['hashchange', 'load'].forEach(ev => {
       window.addEventListener(ev, handler);
     });
   }
 
-  _displayData() {
-    this._parentElement.insertAdjacentHTML(
-      'afterbegin',
-      this._generateMarkup()
+  addHandlerAddBookmark(handler) {
+    this._parentElement.addEventListener(
+      'click',
+      function (e) {
+        const bookmarkButton = e.target.closest('.btn--bookmark');
+        if (bookmarkButton) {
+          this._bookmarkButtonElement = bookmarkButton;
+          console.log(this._bookmarkButtonElement);
+          handler();
+        }
+      }.bind(this)
     );
+  }
+
+  _renderBookmarkIcon(isBookmarked) {
+    let markup;
+    if (isBookmarked) {
+      markup = `<svg class="">
+                   <use href="${icons}.svg#icon-bookmark-fill"></use>
+                </svg>`;
+    } else {
+      markup = `<svg class="">
+                   <use href="${icons}.svg#icon-bookmark"></use>
+                </svg>`;
+    }
+
+    this._bookmarkButtonElement.innerHTML = markup;
   }
 
   _generateMarkup() {
@@ -63,9 +93,9 @@ class ArticleView extends View {
               <use href="${icons}.svg#icon-user"></use>
             </svg>
           </div>
-          <button class="btn--round">
+          <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${icons}.svg#icon-bookmark-fill"></use>
+              <use href="${icons}.svg#icon-bookmark"></use>
             </svg>
           </button>
         </div>
