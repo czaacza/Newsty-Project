@@ -3,6 +3,7 @@ import articleView from './views/articleView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarkListView from './views/bookmarkListView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -70,16 +71,6 @@ const controlNextButton = function () {
   paginationView._render(model.state.search);
 };
 
-// const controlAddBookmark = function () {
-//   model.addBookmark(model.state.chosenArticle);
-//   console.log('bookmark added');
-// };
-
-// const controlRemoveBookmark = function () {
-//   model.removeBookmark(model.state.chosenArticle);
-//   console.log('bookmark removed');
-// };
-
 controlBookmark = function () {
   let isBookmarked;
   if (!model.state.chosenArticle.bookmarked) {
@@ -90,6 +81,11 @@ controlBookmark = function () {
     isBookmarked = false;
   }
   articleView._renderBookmarkIcon(isBookmarked);
+  bookmarkListView._render(model.state.bookmarks);
+};
+
+controlBookmarkList = function () {
+  bookmarkListView._render(model.state.bookmarks);
 };
 
 const init = async function () {

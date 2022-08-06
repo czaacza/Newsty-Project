@@ -34,7 +34,6 @@ class ArticleView extends View {
         const bookmarkButton = e.target.closest('.btn--bookmark');
         if (bookmarkButton) {
           this._bookmarkButtonElement = bookmarkButton;
-          console.log(this._bookmarkButtonElement);
           handler();
         }
       }.bind(this)
@@ -95,7 +94,9 @@ class ArticleView extends View {
           </div>
           <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${icons}.svg#icon-bookmark"></use>
+              <use href="${icons}.svg#icon-bookmark${
+      this._data.bookmarked === true ? '-fill' : ''
+    }"></use>
             </svg>
           </button>
         </div>

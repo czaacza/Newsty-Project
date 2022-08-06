@@ -543,6 +543,8 @@ var _resultsViewJs = require("./views/resultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
 var _paginationViewJs = require("./views/paginationView.js");
 var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
+var _bookmarkListViewJs = require("./views/bookmarkListView.js");
+var _bookmarkListViewJsDefault = parcelHelpers.interopDefault(_bookmarkListViewJs);
 var _runtime = require("regenerator-runtime/runtime");
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
@@ -592,14 +594,6 @@ const controlNextButton = function() {
     (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
     (0, _paginationViewJsDefault.default)._render(_modelJs.state.search);
 };
-// const controlAddBookmark = function () {
-//   model.addBookmark(model.state.chosenArticle);
-//   console.log('bookmark added');
-// };
-// const controlRemoveBookmark = function () {
-//   model.removeBookmark(model.state.chosenArticle);
-//   console.log('bookmark removed');
-// };
 controlBookmark = function() {
     let isBookmarked;
     if (!_modelJs.state.chosenArticle.bookmarked) {
@@ -610,6 +604,10 @@ controlBookmark = function() {
         isBookmarked = false;
     }
     (0, _articleViewJsDefault.default)._renderBookmarkIcon(isBookmarked);
+    (0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks);
+};
+controlBookmarkList = function() {
+    (0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks);
 };
 const init = async function() {
     try {
@@ -623,37 +621,7 @@ const init = async function() {
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE","./views/searchView.js":"9OQAM","./views/paginationView.js":"6z7bi"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/bookmarkListView.js":"3H2TL"}],"49tUX":[function(require,module,exports) {
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("../modules/web.clear-immediate");
 require("../modules/web.set-immediate");
@@ -1748,7 +1716,80 @@ $({
     setImmediate: setImmediate
 });
 
-},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"dXNgZ":[function(require,module,exports) {
+},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"Y4A21":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
+parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
+parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
+parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
+parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
+var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
+var _helpers = require("./helpers");
+const state = {
+    chosenArticle: {},
+    search: {
+        articles: [],
+        query: "",
+        resultsPerPage: (0, _config.RESULTS_PER_PAGE),
+        currentPage: 1
+    },
+    bookmarks: []
+};
+const loadArticles = async function(query) {
+    try {
+        clearArticles();
+        state.search.query = query;
+        // Creating articles array containing ID
+        const data = await (0, _helpers.getJSON)(query);
+        for(let i = 0; i < data.articles.length; i++){
+            const art = {
+                author: data.articles[i].author,
+                content: data.articles[i].content,
+                description: data.articles[i].description,
+                publishedAt: data.articles[i].publishedAt,
+                source: data.articles[i].source,
+                title: data.articles[i].title,
+                url: data.articles[i].url,
+                urlToImage: data.articles[i].urlToImage,
+                id: data.articles[i].content.hashCode()
+            };
+            state.search.articles.push(art);
+        }
+        console.log(state.search.articles);
+    } catch (err) {
+        console.error(`${err} !!!!`);
+        throw err;
+    }
+};
+const clearArticles = function() {
+    state.search.articles = [];
+};
+const loadChosenArticle = function(id) {
+    for (let art of state.search.articles)if (art.id == id) {
+        state.chosenArticle = art;
+        return;
+    }
+    throw new Error("We could not find that article. Please try with another one.");
+};
+const getSearchResultsPage = function(page = state.search.currentPage) {
+    state.search.currentPage = page;
+    let startIndex = state.search.resultsPerPage * (page - 1);
+    let endIndex = startIndex + state.search.resultsPerPage;
+    return state.search.articles.slice(startIndex, endIndex);
+};
+const addBookmark = function(article) {
+    state.bookmarks.push(article);
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
+};
+const removeBookmark = function(article) {
+    state.bookmarks.pop(article);
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
+};
+
+},{"regenerator-runtime":"dXNgZ","./config":"k5Hzs","./helpers":"hGI1E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -2315,80 +2356,45 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"Y4A21":[function(require,module,exports) {
+},{}],"k5Hzs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "state", ()=>state);
-parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
-parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
-parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
-parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
-parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
-var _regeneratorRuntime = require("regenerator-runtime");
-var _config = require("./config");
-var _helpers = require("./helpers");
-const state = {
-    chosenArticle: {},
-    search: {
-        articles: [],
-        query: "",
-        resultsPerPage: (0, _config.RESULTS_PER_PAGE),
-        currentPage: 1
-    },
-    bookmarks: []
+parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
+parcelHelpers.export(exports, "RESULTS_PER_PAGE", ()=>RESULTS_PER_PAGE);
+const TIMEOUT_SECONDS = 10;
+const RESULTS_PER_PAGE = 10;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
 };
-const loadArticles = async function(query) {
-    try {
-        clearArticles();
-        state.search.query = query;
-        // Creating articles array containing ID
-        const data = await (0, _helpers.getJSON)(query);
-        for(let i = 0; i < data.articles.length; i++){
-            const art = {
-                author: data.articles[i].author,
-                content: data.articles[i].content,
-                description: data.articles[i].description,
-                publishedAt: data.articles[i].publishedAt,
-                source: data.articles[i].source,
-                title: data.articles[i].title,
-                url: data.articles[i].url,
-                urlToImage: data.articles[i].urlToImage,
-                id: data.articles[i].content.hashCode()
-            };
-            state.search.articles.push(art);
-        }
-        console.log(state.search.articles);
-    } catch (err) {
-        console.error(`${err} !!!!`);
-        throw err;
-    }
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
 };
-const clearArticles = function() {
-    state.search.articles = [];
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
 };
-const loadChosenArticle = function(id) {
-    for (let art of state.search.articles)if (art.id == id) {
-        state.chosenArticle = art;
-        return;
-    }
-    throw new Error("We could not find that article. Please try with another one.");
-};
-const getSearchResultsPage = function(page = state.search.currentPage) {
-    state.search.currentPage = page;
-    let startIndex = state.search.resultsPerPage * (page - 1);
-    let endIndex = startIndex + state.search.resultsPerPage;
-    return state.search.articles.slice(startIndex, endIndex);
-};
-const addBookmark = function(article) {
-    state.bookmarks.push(article);
-    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
-};
-const removeBookmark = function(article) {
-    state.bookmarks.pop(article);
-    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
 };
 
-},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E","./config":"k5Hzs"}],"hGI1E":[function(require,module,exports) {
+},{}],"hGI1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON);
@@ -2414,15 +2420,7 @@ const getJSON = async function(searchItem) {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"k5Hzs":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
-parcelHelpers.export(exports, "RESULTS_PER_PAGE", ()=>RESULTS_PER_PAGE);
-const TIMEOUT_SECONDS = 10;
-const RESULTS_PER_PAGE = 10;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
+},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2453,7 +2451,6 @@ class ArticleView extends (0, _viewJsDefault.default) {
             const bookmarkButton = e.target.closest(".btn--bookmark");
             if (bookmarkButton) {
                 this._bookmarkButtonElement = bookmarkButton;
-                console.log(this._bookmarkButtonElement);
                 handler();
             }
         }).bind(this));
@@ -2503,7 +2500,7 @@ class ArticleView extends (0, _viewJsDefault.default) {
           </div>
           <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark"></use>
+              <use href="${0, _iconsSvgDefault.default}.svg#icon-bookmark${this._data.bookmarked === true ? "-fill" : ""}"></use>
             </svg>
           </button>
         </div>
@@ -2637,7 +2634,28 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"cSbZE":[function(require,module,exports) {
+},{}],"9OQAM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class SearchView {
+    parentElement = document.querySelector(".search");
+    getQuery() {
+        return this.parentElement.querySelector(".search__field").value;
+    }
+    addHandlerSearch(handler) {
+        this.parentElement.addEventListener("submit", (function(e) {
+            e.preventDefault();
+            handler();
+            this._clearInput();
+        }).bind(this));
+    }
+    _clearInput() {
+        this.parentElement.querySelector(".search__field").value = "";
+    }
+}
+exports.default = new SearchView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cSbZE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2671,28 +2689,7 @@ class ResultsView extends (0, _viewJsDefault.default) {
 }
 exports.default = new ResultsView();
 
-},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./View.js":"5cUXS"}],"9OQAM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class SearchView {
-    parentElement = document.querySelector(".search");
-    getQuery() {
-        return this.parentElement.querySelector(".search__field").value;
-    }
-    addHandlerSearch(handler) {
-        this.parentElement.addEventListener("submit", (function(e) {
-            e.preventDefault();
-            handler();
-            this._clearInput();
-        }).bind(this));
-    }
-    _clearInput() {
-        this.parentElement.querySelector(".search__field").value = "";
-    }
-}
-exports.default = new SearchView();
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2729,6 +2726,36 @@ class PaginationView extends (0, _viewJsDefault.default) {
     }
 }
 exports.default = new PaginationView();
+
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3H2TL":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class BookmarkListsView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".bookmarks__list");
+    _displayData() {
+        for (let result of this._data){
+            const markup = `<li class="preview">
+                      <a class="preview__link" href="#${result.id}">
+                        <figure class="preview__fig">
+                          <img src="${result.urlToImage}" alt="Test" />
+                        </figure>
+                        <div class="preview__data">
+                          <h4 class="preview__name">
+                            ${result.title}
+                          </h4>
+                          <p class="preview__publisher">${result.author != null ? result.author.slice(0, 40) : ""}</p>
+                      </div>
+                    </a>
+                  </li>`;
+            this._parentElement.insertAdjacentHTML("beforeend", markup);
+        }
+    }
+}
+exports.default = new BookmarkListsView();
 
 },{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
