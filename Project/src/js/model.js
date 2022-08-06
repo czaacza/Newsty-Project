@@ -1,11 +1,14 @@
 import { async } from 'regenerator-runtime';
+import { RESULTS_PER_PAGE } from './config';
 import { getJSON } from './helpers';
 
 export const state = {
-  articles: [],
   chosenArticle: {},
   search: {
+    articles: [],
     query: '',
+    resultsPerPage: RESULTS_PER_PAGE,
+    currentPage: 1,
   },
 };
 
@@ -27,9 +30,9 @@ export const loadArticles = async function (query) {
         urlToImage: data.articles[i].urlToImage,
         id: data.articles[i].content.hashCode(),
       };
-      state.articles.push(art);
+      state.search.articles.push(art);
     }
-    console.log(state.articles);
+    console.log(state.search.articles);
   } catch (err) {
     console.error(`${err} !!!!`);
     throw err;
@@ -37,11 +40,11 @@ export const loadArticles = async function (query) {
 };
 
 const clearArticles = function () {
-  state.articles = [];
+  state.search.articles = [];
 };
 
 export const loadChosenArticle = function (id) {
-  for (let art of state.articles) {
+  for (let art of state.search.articles) {
     if (art.id == id) {
       state.chosenArticle = art;
       return;
@@ -50,4 +53,12 @@ export const loadChosenArticle = function (id) {
   throw new Error(
     'We could not find that article. Please try with another one.'
   );
+};
+
+export const getSearchResultsPage = function (page = state.search.currentPage) {
+  state.search.currentPage = page;
+  let startIndex = state.search.resultsPerPage * (page - 1);
+  let endIndex = startIndex + state.search.resultsPerPage;
+
+  return state.search.articles.slice(startIndex, endIndex);
 };

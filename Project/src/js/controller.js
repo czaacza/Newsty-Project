@@ -2,6 +2,7 @@ import * as model from './model.js';
 import articleView from './views/articleView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -41,22 +42,39 @@ const controlArticle = function () {
   }
 };
 
-const init = async function () {
-  try {
-    articleView._addHandlerRender(controlArticle);
-    searchView.addHandlerSearch(controlSearchResults);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const controlSearchResults = async function () {
   try {
     const query = searchView.getQuery();
 
     resultsView._renderSpinner();
+
     await model.loadArticles(query);
-    resultsView._render(model.state.articles);
+
+    resultsView._render(model.getSearchResultsPage());
+
+    paginationView._render(model.state.search);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const controlPrevButton = function () {
+  model.state.search.currentPage--;
+  console.log(model.state.search.currentPage);
+  resultsView._render(model.getSearchResultsPage());
+};
+
+const controlNextButton = function () {
+  model.state.search.currentPage++;
+  console.log(model.state.search.currentPage);
+  resultsView._render(model.getSearchResultsPage());
+};
+
+const init = async function () {
+  try {
+    articleView._addHandlerRender(controlArticle);
+    searchView.addHandlerSearch(controlSearchResults);
+    paginationView.addHandlerButtons(controlPrevButton, controlNextButton);
   } catch (err) {
     console.log(err);
   }

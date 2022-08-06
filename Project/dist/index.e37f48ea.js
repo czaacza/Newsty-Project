@@ -541,6 +541,8 @@ var _searchViewJs = require("./views/searchView.js");
 var _searchViewJsDefault = parcelHelpers.interopDefault(_searchViewJs);
 var _resultsViewJs = require("./views/resultsView.js");
 var _resultsViewJsDefault = parcelHelpers.interopDefault(_resultsViewJs);
+var _paginationViewJs = require("./views/paginationView.js");
+var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
 var _runtime = require("regenerator-runtime/runtime");
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
@@ -568,27 +570,39 @@ const controlArticle = function() {
         (0, _articleViewJsDefault.default)._renderError(`${err}`);
     }
 };
-const init = async function() {
-    try {
-        (0, _articleViewJsDefault.default)._addHandlerRender(controlArticle);
-        (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
-    } catch (err) {
-        console.log(err);
-    }
-};
 const controlSearchResults = async function() {
     try {
         const query = (0, _searchViewJsDefault.default).getQuery();
         (0, _resultsViewJsDefault.default)._renderSpinner();
         await _modelJs.loadArticles(query);
-        (0, _resultsViewJsDefault.default)._render(_modelJs.state.articles);
+        (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
+        (0, _paginationViewJsDefault.default)._render(_modelJs.state.search);
+    } catch (err) {
+        console.log(err);
+    }
+};
+const controlPrevButton = function() {
+    _modelJs.state.search.currentPage--;
+    console.log(_modelJs.state.search.currentPage);
+    (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
+};
+const controlNextButton = function() {
+    _modelJs.state.search.currentPage++;
+    console.log(_modelJs.state.search.currentPage);
+    (0, _resultsViewJsDefault.default)._render(_modelJs.getSearchResultsPage());
+};
+const init = async function() {
+    try {
+        (0, _articleViewJsDefault.default)._addHandlerRender(controlArticle);
+        (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
+        (0, _paginationViewJsDefault.default).addHandlerButtons(controlPrevButton, controlNextButton);
     } catch (err) {
         console.log(err);
     }
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE","./views/searchView.js":"9OQAM"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE","./views/searchView.js":"9OQAM","./views/paginationView.js":"6z7bi"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -2286,13 +2300,17 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
 parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
+parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
 var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
 var _helpers = require("./helpers");
 const state = {
-    articles: [],
     chosenArticle: {},
     search: {
-        query: ""
+        articles: [],
+        query: "",
+        resultsPerPage: (0, _config.RESULTS_PER_PAGE),
+        currentPage: 1
     }
 };
 const loadArticles = async function(query) {
@@ -2313,26 +2331,32 @@ const loadArticles = async function(query) {
                 urlToImage: data.articles[i].urlToImage,
                 id: data.articles[i].content.hashCode()
             };
-            state.articles.push(art);
+            state.search.articles.push(art);
         }
-        console.log(state.articles);
+        console.log(state.search.articles);
     } catch (err) {
         console.error(`${err} !!!!`);
         throw err;
     }
 };
 const clearArticles = function() {
-    state.articles = [];
+    state.search.articles = [];
 };
 const loadChosenArticle = function(id) {
-    for (let art of state.articles)if (art.id == id) {
+    for (let art of state.search.articles)if (art.id == id) {
         state.chosenArticle = art;
         return;
     }
     throw new Error("We could not find that article. Please try with another one.");
 };
+const getSearchResultsPage = function(page = state.search.currentPage) {
+    state.search.currentPage = page;
+    let startIndex = state.search.resultsPerPage * (page - 1);
+    let endIndex = startIndex + state.search.resultsPerPage;
+    return state.search.articles.slice(startIndex, endIndex);
+};
 
-},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E"}],"hGI1E":[function(require,module,exports) {
+},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E","./config":"k5Hzs"}],"hGI1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON);
@@ -2362,7 +2386,9 @@ const getJSON = async function(searchItem) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
+parcelHelpers.export(exports, "RESULTS_PER_PAGE", ()=>RESULTS_PER_PAGE);
 const TIMEOUT_SECONDS = 10;
+const RESULTS_PER_PAGE = 10;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -2568,33 +2594,16 @@ var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ResultsView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".results");
     _paginationElement = document.querySelector(".pagination");
-    #prevButtonElement;
-    #nextButtonElement;
-    #itemsPerPage = 10;
-    #currentPage = 1;
-    // _render(articles) {
-    //   this._data = articles;
-    //   this.#clear();
-    //   this.#displayPage();
-    //   this.#displayPagination();
-    // }
     _displayData() {
-        this._displayResults();
-        this.#displayPagination();
-    }
-    _displayResults() {
-        let startIndex = this.#itemsPerPage * (this.#currentPage - 1);
-        let endIndex = startIndex + this.#itemsPerPage;
-        let paginatedItems = this._data.slice(startIndex, endIndex);
-        for (let item of paginatedItems){
+        for (let result of this._data){
             const itemMarkup = `<li class="preview">
-            <a class="preview__link preview__link--active" href="#${item.id}">
+            <a class="preview__link preview__link--active" href="#${result.id}">
               <figure class="preview__fig">
-                <img src="${item.urlToImage}" alt="Test" />
+                <img src="${result.urlToImage}" alt="Test" />
               </figure>
               <div class="preview__data">
-                <h4 class="preview__title">${item.title}</h4>
-                <p class="preview__publisher">${item.author != null ? item.author.slice(0, 40) : ""}</p>
+                <h4 class="preview__title">${result.title}</h4>
+                <p class="preview__publisher">${result.author != null ? result.author.slice(0, 40) : ""}</p>
                 <div class="preview__user-generated">
                   <svg>
                     <use href="src/img/icons.svg#icon-user"></use>
@@ -2605,47 +2614,6 @@ class ResultsView extends (0, _viewJsDefault.default) {
           </li>`;
             this._parentElement.insertAdjacentHTML("beforeend", itemMarkup);
         }
-    }
-     #displayPagination() {
-        this._paginationElement.innerHTML = "";
-        // create buttons
-        this.#createPaginationButtons();
-        if (this.#currentPage > 1) this._paginationElement.appendChild(this.#prevButtonElement);
-        if (this.#currentPage < this._data.length / this.#itemsPerPage) this._paginationElement.appendChild(this.#nextButtonElement);
-        this._addButtonsListeners();
-    }
-     #createPaginationButtons() {
-        const prevButtonElement = document.createElement("button");
-        prevButtonElement.classList.add("btn--inline", "pagination__btn--prev");
-        const prevButtonInsideMarkup = `<svg class="search__icon">
-                <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-left"></use>
-              </svg>
-              <span>Page ${this.#currentPage - 1}</span>`;
-        prevButtonElement.innerHTML = prevButtonInsideMarkup;
-        // create nextButtonElement
-        const nextButtonElement = document.createElement("button");
-        nextButtonElement.classList.add("btn--inline", "pagination__btn--next");
-        let nextButtonInsideMarkup = `<span>Page ${this.#currentPage + 1}</span>
-    <svg class="search__icon">
-    <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-right"></use>
-    </svg>`;
-        nextButtonElement.innerHTML = nextButtonInsideMarkup;
-        this.#prevButtonElement = prevButtonElement;
-        this.#nextButtonElement = nextButtonElement;
-    }
-    _addButtonsHandler(handler) {}
-    _addButtonsListeners() {
-        if (this.#prevButtonElement) this.#prevButtonElement.addEventListener("click", (function() {
-            this.#currentPage--;
-            this._render(this._data);
-        }).bind(this));
-        if (this.#nextButtonElement) this.#nextButtonElement.addEventListener("click", (function() {
-            this.#currentPage++;
-            this._render(this._data);
-        }).bind(this));
-    }
-     #clear() {
-        this._parentElement.innerHTML = "";
     }
 }
 exports.default = new ResultsView();
@@ -2671,6 +2639,44 @@ class SearchView {
 }
 exports.default = new SearchView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class PaginationView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".pagination");
+    _prevButtonElement = document.createElement("button");
+    _nextButtonElement = document.createElement("button");
+    _displayData() {
+        const numPages = Math.ceil(this._data.articles.length / this._data.resultsPerPage);
+        this._createButtons();
+        if (this._data.currentPage > 1) this._parentElement.appendChild(this._prevButtonElement);
+        if (this._data.currentPage < numPages && numPages > 1) this._parentElement.appendChild(this._nextButtonElement);
+    }
+    _createButtons() {
+        this._prevButtonElement.classList.add("btn--inline", "pagination__btn--prev");
+        this._nextButtonElement.classList.add("btn--inline", "pagination__btn--next");
+        const prevButtonInsideMarkup = `<svg class="search__icon">
+                <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-left"></use>
+              </svg>
+              <span>Page ${this._data.currentPage - 1}</span>`;
+        const nextButtonInsideMarkup = `<span>Page ${this._data.currentPage + 1}</span>
+              <svg class="search__icon">
+              <use href="${(0, _iconsSvgDefault.default)}#icon-arrow-right"></use>
+              </svg>`;
+        this._prevButtonElement.innerHTML = prevButtonInsideMarkup;
+        this._nextButtonElement.innerHTML = nextButtonInsideMarkup;
+    }
+    addHandlerButtons(prevButtonHandler, nextButtonHandler) {
+        if (this._prevButtonElement) this._prevButtonElement.addEventListener("click", prevButtonHandler);
+        if (this._nextButtonElement) this._nextButtonElement.addEventListener("click", nextButtonHandler);
+    }
+}
+exports.default = new PaginationView();
+
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map
