@@ -1,4 +1,4 @@
-.add-recipe-window {
+.add-article-window {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -47,6 +47,20 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem 6rem;
 
+  &__content {
+    border: 1.5px solid #615551;
+    padding: 0.8rem;
+    font-family: Nunito Sans, sans-serif;
+    font-weight: 600;
+
+    height: 100%;
+    resize: none;
+  }
+  &__content-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   &__column {
     display: grid;
     grid-template-columns: 1fr 2.8fr;
@@ -54,13 +68,16 @@
     gap: 1.5rem;
 
     & label {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       font-weight: 600;
       color: inherit;
     }
 
     & input {
-      font-size: 1.5rem;
+      font-family: Nunito Sans, sans-serif;
+      color: #333;
+      font-weight: 600;
+      font-size: 1.7rem;
       padding: 0.8rem 1rem;
       border: 1px solid #ddd;
       border-radius: 0.5rem;

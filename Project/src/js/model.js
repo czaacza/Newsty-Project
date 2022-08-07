@@ -104,6 +104,5 @@ export const getLocalStorage = function () {
   const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
   if (Array.isArray(bookmarks) && bookmarks.length > 0) {
     state.bookmarks = bookmarks;
-    console.log(state.bookmarks);
   }
 };

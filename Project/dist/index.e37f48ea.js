@@ -545,6 +545,8 @@ var _paginationViewJs = require("./views/paginationView.js");
 var _paginationViewJsDefault = parcelHelpers.interopDefault(_paginationViewJs);
 var _bookmarkListViewJs = require("./views/bookmarkListView.js");
 var _bookmarkListViewJsDefault = parcelHelpers.interopDefault(_bookmarkListViewJs);
+var _addArticleViewJs = require("./views/addArticleView.js");
+var _addArticleViewJsDefault = parcelHelpers.interopDefault(_addArticleViewJs);
 var _runtime = require("regenerator-runtime/runtime");
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
@@ -626,7 +628,37 @@ const init = async function() {
 };
 init();
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","./views/bookmarkListView.js":"3H2TL","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"49tUX":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/resultsView.js":"cSbZE","./views/searchView.js":"9OQAM","./views/paginationView.js":"6z7bi","./views/bookmarkListView.js":"3H2TL","./views/addArticleView.js":"e8bIl"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"49tUX":[function(require,module,exports) {
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("../modules/web.clear-immediate");
 require("../modules/web.set-immediate");
@@ -1721,102 +1753,7 @@ $({
     setImmediate: setImmediate
 });
 
-},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"Y4A21":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "state", ()=>state);
-parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
-parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
-parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
-parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
-parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
-parcelHelpers.export(exports, "checkIfArticleIsBookmarked", ()=>checkIfArticleIsBookmarked);
-parcelHelpers.export(exports, "setLocalStorage", ()=>setLocalStorage);
-parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
-var _regeneratorRuntime = require("regenerator-runtime");
-var _config = require("./config");
-var _helpers = require("./helpers");
-const state = {
-    chosenArticle: {},
-    search: {
-        articles: [],
-        query: "",
-        resultsPerPage: (0, _config.RESULTS_PER_PAGE),
-        currentPage: 1
-    },
-    bookmarks: []
-};
-const loadArticles = async function(query) {
-    try {
-        clearArticles();
-        state.search.query = query;
-        // Creating articles array containing ID
-        const data = await (0, _helpers.getJSON)(query);
-        for(let i = 0; i < data.articles.length; i++){
-            const art = {
-                author: data.articles[i].author,
-                content: data.articles[i].content,
-                description: data.articles[i].description,
-                publishedAt: data.articles[i].publishedAt,
-                source: data.articles[i].source,
-                title: data.articles[i].title,
-                url: data.articles[i].url,
-                urlToImage: data.articles[i].urlToImage,
-                id: data.articles[i].content.hashCode()
-            };
-            state.search.articles.push(art);
-        }
-        console.log(state.search.articles);
-    } catch (err) {
-        console.error(`${err} !!!!`);
-        throw err;
-    }
-};
-const clearArticles = function() {
-    state.search.articles = [];
-};
-const loadChosenArticle = function(id) {
-    for (let art of state.search.articles)if (art.id == id) {
-        state.chosenArticle = art;
-        return;
-    }
-    for (let bookmarkedArt of state.bookmarks)if (bookmarkedArt.id == id) {
-        state.chosenArticle = bookmarkedArt;
-        return;
-    }
-    throw new Error("We could not find that article. Please try with another one.");
-};
-const getSearchResultsPage = function(page = state.search.currentPage) {
-    state.search.currentPage = page;
-    let startIndex = state.search.resultsPerPage * (page - 1);
-    let endIndex = startIndex + state.search.resultsPerPage;
-    return state.search.articles.slice(startIndex, endIndex);
-};
-const addBookmark = function(article) {
-    state.bookmarks.push(article);
-    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
-};
-const removeBookmark = function(article) {
-    state.bookmarks = state.bookmarks.filter((element)=>{
-        return element.id != article.id;
-    });
-    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
-};
-const checkIfArticleIsBookmarked = function() {
-    for (let bookmarkedArt of state.bookmarks)if (state.chosenArticle.id === bookmarkedArt.id) state.chosenArticle.bookmarked = true;
-};
-const setLocalStorage = function() {
-    localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
-};
-const getLocalStorage = function() {
-    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-    if (Array.isArray(bookmarks) && bookmarks.length > 0) {
-        state.bookmarks = bookmarks;
-        console.log(state.bookmarks);
-    }
-};
-
-},{"regenerator-runtime":"dXNgZ","./config":"k5Hzs","./helpers":"hGI1E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
+},{"../internals/export":"dIGt4","../internals/global":"i8HOC","../internals/task":"7jDg7"}],"dXNgZ":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -2383,45 +2320,99 @@ try {
     else Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"k5Hzs":[function(require,module,exports) {
+},{}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
-parcelHelpers.export(exports, "RESULTS_PER_PAGE", ()=>RESULTS_PER_PAGE);
-const TIMEOUT_SECONDS = 10;
-const RESULTS_PER_PAGE = 10;
+parcelHelpers.export(exports, "state", ()=>state);
+parcelHelpers.export(exports, "loadArticles", ()=>loadArticles);
+parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
+parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
+parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
+parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
+parcelHelpers.export(exports, "checkIfArticleIsBookmarked", ()=>checkIfArticleIsBookmarked);
+parcelHelpers.export(exports, "setLocalStorage", ()=>setLocalStorage);
+parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
+var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
+var _helpers = require("./helpers");
+const state = {
+    chosenArticle: {},
+    search: {
+        articles: [],
+        query: "",
+        resultsPerPage: (0, _config.RESULTS_PER_PAGE),
+        currentPage: 1
+    },
+    bookmarks: []
+};
+const loadArticles = async function(query) {
+    try {
+        clearArticles();
+        state.search.query = query;
+        // Creating articles array containing ID
+        const data = await (0, _helpers.getJSON)(query);
+        for(let i = 0; i < data.articles.length; i++){
+            const art = {
+                author: data.articles[i].author,
+                content: data.articles[i].content,
+                description: data.articles[i].description,
+                publishedAt: data.articles[i].publishedAt,
+                source: data.articles[i].source,
+                title: data.articles[i].title,
+                url: data.articles[i].url,
+                urlToImage: data.articles[i].urlToImage,
+                id: data.articles[i].content.hashCode()
+            };
+            state.search.articles.push(art);
+        }
+        console.log(state.search.articles);
+    } catch (err) {
+        console.error(`${err} !!!!`);
+        throw err;
+    }
+};
+const clearArticles = function() {
+    state.search.articles = [];
+};
+const loadChosenArticle = function(id) {
+    for (let art of state.search.articles)if (art.id == id) {
+        state.chosenArticle = art;
+        return;
+    }
+    for (let bookmarkedArt of state.bookmarks)if (bookmarkedArt.id == id) {
+        state.chosenArticle = bookmarkedArt;
+        return;
+    }
+    throw new Error("We could not find that article. Please try with another one.");
+};
+const getSearchResultsPage = function(page = state.search.currentPage) {
+    state.search.currentPage = page;
+    let startIndex = state.search.resultsPerPage * (page - 1);
+    let endIndex = startIndex + state.search.resultsPerPage;
+    return state.search.articles.slice(startIndex, endIndex);
+};
+const addBookmark = function(article) {
+    state.bookmarks.push(article);
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
+};
+const removeBookmark = function(article) {
+    state.bookmarks = state.bookmarks.filter((element)=>{
+        return element.id != article.id;
+    });
+    if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
+};
+const checkIfArticleIsBookmarked = function() {
+    for (let bookmarkedArt of state.bookmarks)if (state.chosenArticle.id === bookmarkedArt.id) state.chosenArticle.bookmarked = true;
+};
+const setLocalStorage = function() {
+    localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+const getLocalStorage = function() {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (Array.isArray(bookmarks) && bookmarks.length > 0) state.bookmarks = bookmarks;
+};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"hGI1E":[function(require,module,exports) {
+},{"regenerator-runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./helpers":"hGI1E","./config":"k5Hzs"}],"hGI1E":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON);
@@ -2447,7 +2438,15 @@ const getJSON = async function(searchItem) {
     }
 };
 
-},{"./config.js":"k5Hzs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"k5Hzs":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TIMEOUT_SECONDS", ()=>TIMEOUT_SECONDS);
+parcelHelpers.export(exports, "RESULTS_PER_PAGE", ()=>RESULTS_PER_PAGE);
+const TIMEOUT_SECONDS = 10;
+const RESULTS_PER_PAGE = 10;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5jNgA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2661,28 +2660,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"9OQAM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class SearchView {
-    parentElement = document.querySelector(".search");
-    getQuery() {
-        return this.parentElement.querySelector(".search__field").value;
-    }
-    addHandlerSearch(handler) {
-        this.parentElement.addEventListener("submit", (function(e) {
-            e.preventDefault();
-            handler();
-            this._clearInput();
-        }).bind(this));
-    }
-    _clearInput() {
-        this.parentElement.querySelector(".search__field").value = "";
-    }
-}
-exports.default = new SearchView();
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cSbZE":[function(require,module,exports) {
+},{}],"cSbZE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2716,7 +2694,28 @@ class ResultsView extends (0, _viewJsDefault.default) {
 }
 exports.default = new ResultsView();
 
-},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
+},{"url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./View.js":"5cUXS"}],"9OQAM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class SearchView {
+    parentElement = document.querySelector(".search");
+    getQuery() {
+        return this.parentElement.querySelector(".search__field").value;
+    }
+    addHandlerSearch(handler) {
+        this.parentElement.addEventListener("submit", (function(e) {
+            e.preventDefault();
+            handler();
+            this._clearInput();
+        }).bind(this));
+    }
+    _clearInput() {
+        this.parentElement.querySelector(".search__field").value = "";
+    }
+}
+exports.default = new SearchView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6z7bi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -2788,6 +2787,39 @@ class BookmarkListsView extends (0, _viewJsDefault.default) {
 }
 exports.default = new BookmarkListsView();
 
-},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../model.js":"Y4A21"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../model.js":"Y4A21"}],"e8bIl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class AddArticleView extends (0, _viewJsDefault.default) {
+    _parentElement = document.querySelector(".upload");
+    _window = document.querySelector(".add-article-window");
+    _overlay = document.querySelector(".overlay");
+    _btnOpen = document.querySelector(".nav__btn--add-article");
+    _btnClose = document.querySelector(".btn--close-modal");
+    constructor(){
+        super();
+        this.addHandlerShowWindow();
+        this.addHandlerCloseWindow();
+    }
+    toggleWindow() {
+        this._overlay.classList.toggle("hidden");
+        this._window.classList.toggle("hidden");
+    }
+    addHandlerShowWindow() {
+        this._btnOpen.addEventListener("click", this.toggleWindow.bind(this));
+    }
+    addHandlerCloseWindow() {
+        this._btnClose.addEventListener("click", this.toggleWindow.bind(this));
+        this._overlay.addEventListener("click", this.toggleWindow.bind(this));
+    }
+    _displayData() {}
+}
+exports.default = new AddArticleView();
+
+},{"./View.js":"5cUXS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../../img/icons.svg":"loVOp"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map
