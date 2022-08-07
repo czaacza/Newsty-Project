@@ -84,11 +84,27 @@ controlBookmark = function () {
   }
   model.setLocalStorage();
   articleView._renderBookmarkIcon(isBookmarked);
-  bookmarkListView._render(model.state.bookmarks);
+  controlBookmarkList();
 };
 
 controlBookmarkList = function () {
   bookmarkListView._render(model.state.bookmarks);
+};
+
+controlAddArticle = function (data) {
+  const newArticle = data;
+  newArticle.source = {
+    id: 'user',
+    name: 'Created by You',
+  };
+
+  newArticle.id = newArticle.content.hashCode();
+  model.state.chosenArticle = newArticle;
+  model.addBookmark(newArticle);
+  controlBookmarkList();
+  model.setLocalStorage();
+
+  articleView._render(model.state.chosenArticle);
 };
 
 const init = async function () {
@@ -102,6 +118,7 @@ const init = async function () {
     bookmarkListView.addHandlerRender(
       bookmarkListView._render(model.state.bookmarks)
     );
+    addArticleView.addHandlerUpload(controlAddArticle);
   } catch (err) {
     console.log(err);
   }

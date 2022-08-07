@@ -608,10 +608,23 @@ controlBookmark = function() {
     }
     _modelJs.setLocalStorage();
     (0, _articleViewJsDefault.default)._renderBookmarkIcon(isBookmarked);
-    (0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks);
+    controlBookmarkList();
 };
 controlBookmarkList = function() {
     (0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks);
+};
+controlAddArticle = function(data) {
+    const newArticle = data;
+    newArticle.source = {
+        id: "user",
+        name: "Created by You"
+    };
+    newArticle.id = newArticle.content.hashCode();
+    _modelJs.state.chosenArticle = newArticle;
+    _modelJs.addBookmark(newArticle);
+    controlBookmarkList();
+    _modelJs.setLocalStorage();
+    (0, _articleViewJsDefault.default)._render(_modelJs.state.chosenArticle);
 };
 const init = async function() {
     try {
@@ -622,6 +635,7 @@ const init = async function() {
         (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
         (0, _paginationViewJsDefault.default).addHandlerButtons(controlPrevButton, controlNextButton);
         (0, _bookmarkListViewJsDefault.default).addHandlerRender((0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks));
+        (0, _addArticleViewJsDefault.default).addHandlerUpload(controlAddArticle);
     } catch (err) {
         console.log(err);
     }
@@ -2495,7 +2509,7 @@ class ArticleView extends (0, _viewJsDefault.default) {
         return `<figure class="article__fig">
           <img
             src="${this._data.urlToImage}"
-            alt="Tomato"
+            alt="article picture"
             class="article__img"
           />
         </figure>
@@ -2800,10 +2814,12 @@ class AddArticleView extends (0, _viewJsDefault.default) {
     _overlay = document.querySelector(".overlay");
     _btnOpen = document.querySelector(".nav__btn--add-article");
     _btnClose = document.querySelector(".btn--close-modal");
+    _message = "Article was successfully uploaded!";
     constructor(){
         super();
         this.addHandlerShowWindow();
         this.addHandlerCloseWindow();
+        this.addHandlerUpload();
     }
     toggleWindow() {
         this._overlay.classList.toggle("hidden");
@@ -2816,7 +2832,28 @@ class AddArticleView extends (0, _viewJsDefault.default) {
         this._btnClose.addEventListener("click", this.toggleWindow.bind(this));
         this._overlay.addEventListener("click", this.toggleWindow.bind(this));
     }
-    _displayData() {}
+    addHandlerUpload(handler) {
+        this._parentElement.addEventListener("submit", (function(e) {
+            e.preventDefault();
+            const dataArray = [
+                ...new FormData(this._parentElement)
+            ];
+            const data = Object.fromEntries(dataArray);
+            handler(data);
+            this._renderMessage();
+        }).bind(this));
+    }
+    _renderMessage() {
+        const markup = `<div class="message">
+        <div>
+          <svg>
+            <use href="${(0, _iconsSvgDefault.default)}.svg#icon-smile"></use>
+          </svg>
+        </div>
+        <p>${this._message}</p>
+      </div>;`;
+        this._parentElement.innerHTML = markup;
+    }
 }
 exports.default = new AddArticleView();
 

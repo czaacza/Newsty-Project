@@ -53,13 +53,29 @@
     font-family: Nunito Sans, sans-serif;
     font-weight: 600;
 
-    height: 100%;
+    height: 20rem;
+    resize: none;
+  }
+  &__description {
+    border: 1.5px solid #615551;
+    padding: 0.8rem;
+    font-family: Nunito Sans, sans-serif;
+    font-weight: 600;
+    height: 20%;
     resize: none;
   }
   &__content-column {
     display: flex;
     flex-direction: column;
+    justify-content: space-beetween;
     gap: 1.5rem;
+    height: 40rem;
+
+    & label {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: inherit;
+    }
   }
   &__column {
     display: grid;
@@ -107,6 +123,7 @@
     text-transform: uppercase;
     margin-bottom: 1rem;
     grid-column: 1/-1;
+    align-self: flex-start;
   }
 
   &__btn {

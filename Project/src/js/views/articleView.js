@@ -59,7 +59,7 @@ class ArticleView extends View {
     return `<figure class="article__fig">
           <img
             src="${this._data.urlToImage}"
-            alt="Tomato"
+            alt="article picture"
             class="article__img"
           />
         </figure>

@@ -7,11 +7,13 @@ class AddArticleView extends View {
   _overlay = document.querySelector('.overlay');
   _btnOpen = document.querySelector('.nav__btn--add-article');
   _btnClose = document.querySelector('.btn--close-modal');
+  _message = 'Article was successfully uploaded!';
 
   constructor() {
     super();
     this.addHandlerShowWindow();
     this.addHandlerCloseWindow();
+    this.addHandlerUpload();
   }
 
   toggleWindow() {
@@ -28,7 +30,31 @@ class AddArticleView extends View {
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  _displayData() {}
+  addHandlerUpload(handler) {
+    this._parentElement.addEventListener(
+      'submit',
+      function (e) {
+        e.preventDefault();
+        const dataArray = [...new FormData(this._parentElement)];
+        const data = Object.fromEntries(dataArray);
+        handler(data);
+        this._renderMessage();
+      }.bind(this)
+    );
+  }
+
+  _renderMessage() {
+    const markup = `<div class="message">
+        <div>
+          <svg>
+            <use href="${icons}.svg#icon-smile"></use>
+          </svg>
+        </div>
+        <p>${this._message}</p>
+      </div>;`;
+
+    this._parentElement.innerHTML = markup;
+  }
 }
 
 export default new AddArticleView();
