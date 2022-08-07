@@ -34,6 +34,7 @@ const controlArticle = function () {
     } else {
       // Get the article with selected ID
       model.loadChosenArticle(chosenArticleID);
+      model.checkIfArticleIsBookmarked();
 
       // Rendering the article
       articleView._render(model.state.chosenArticle);
@@ -80,6 +81,7 @@ controlBookmark = function () {
     model.removeBookmark(model.state.chosenArticle);
     isBookmarked = false;
   }
+  model.setLocalStorage();
   articleView._renderBookmarkIcon(isBookmarked);
   bookmarkListView._render(model.state.bookmarks);
 };
@@ -90,10 +92,15 @@ controlBookmarkList = function () {
 
 const init = async function () {
   try {
+    // localStorage.clear();
+    model.getLocalStorage();
     articleView.addHandlerRender(controlArticle);
     articleView.addHandlerAddBookmark(controlBookmark);
     searchView.addHandlerSearch(controlSearchResults);
     paginationView.addHandlerButtons(controlPrevButton, controlNextButton);
+    bookmarkListView.addHandlerRender(
+      bookmarkListView._render(model.state.bookmarks)
+    );
   } catch (err) {
     console.log(err);
   }

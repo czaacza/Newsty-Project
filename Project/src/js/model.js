@@ -51,6 +51,12 @@ export const loadChosenArticle = function (id) {
       return;
     }
   }
+  for (let bookmarkedArt of state.bookmarks) {
+    if (bookmarkedArt.id == id) {
+      state.chosenArticle = bookmarkedArt;
+      return;
+    }
+  }
   throw new Error(
     'We could not find that article. Please try with another one.'
   );
@@ -73,9 +79,31 @@ export const addBookmark = function (article) {
 };
 
 export const removeBookmark = function (article) {
-  state.bookmarks.pop(article);
+  state.bookmarks = state.bookmarks.filter(element => {
+    return element.id != article.id;
+  });
 
   if (article.id === state.chosenArticle.id) {
     state.chosenArticle.bookmarked = false;
+  }
+};
+
+export const checkIfArticleIsBookmarked = function () {
+  for (let bookmarkedArt of state.bookmarks) {
+    if (state.chosenArticle.id === bookmarkedArt.id) {
+      state.chosenArticle.bookmarked = true;
+    }
+  }
+};
+
+export const setLocalStorage = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
+export const getLocalStorage = function () {
+  const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+  if (Array.isArray(bookmarks) && bookmarks.length > 0) {
+    state.bookmarks = bookmarks;
+    console.log(state.bookmarks);
   }
 };

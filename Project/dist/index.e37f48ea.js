@@ -565,6 +565,7 @@ const controlArticle = function() {
         else {
             // Get the article with selected ID
             _modelJs.loadChosenArticle(chosenArticleID);
+            _modelJs.checkIfArticleIsBookmarked();
             // Rendering the article
             (0, _articleViewJsDefault.default)._render(_modelJs.state.chosenArticle);
         }
@@ -603,6 +604,7 @@ controlBookmark = function() {
         _modelJs.removeBookmark(_modelJs.state.chosenArticle);
         isBookmarked = false;
     }
+    _modelJs.setLocalStorage();
     (0, _articleViewJsDefault.default)._renderBookmarkIcon(isBookmarked);
     (0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks);
 };
@@ -611,17 +613,20 @@ controlBookmarkList = function() {
 };
 const init = async function() {
     try {
+        // localStorage.clear();
+        _modelJs.getLocalStorage();
         (0, _articleViewJsDefault.default).addHandlerRender(controlArticle);
         (0, _articleViewJsDefault.default).addHandlerAddBookmark(controlBookmark);
         (0, _searchViewJsDefault.default).addHandlerSearch(controlSearchResults);
         (0, _paginationViewJsDefault.default).addHandlerButtons(controlPrevButton, controlNextButton);
+        (0, _bookmarkListViewJsDefault.default).addHandlerRender((0, _bookmarkListViewJsDefault.default)._render(_modelJs.state.bookmarks));
     } catch (err) {
         console.log(err);
     }
 };
 init();
 
-},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/bookmarkListView.js":"3H2TL"}],"49tUX":[function(require,module,exports) {
+},{"core-js/modules/web.immediate.js":"49tUX","./model.js":"Y4A21","./views/articleView.js":"5jNgA","./views/searchView.js":"9OQAM","./views/resultsView.js":"cSbZE","./views/paginationView.js":"6z7bi","./views/bookmarkListView.js":"3H2TL","regenerator-runtime/runtime":"dXNgZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"49tUX":[function(require,module,exports) {
 // TODO: Remove this module from `core-js@4` since it's split to modules listed below
 require("../modules/web.clear-immediate");
 require("../modules/web.set-immediate");
@@ -1725,6 +1730,9 @@ parcelHelpers.export(exports, "loadChosenArticle", ()=>loadChosenArticle);
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage);
 parcelHelpers.export(exports, "addBookmark", ()=>addBookmark);
 parcelHelpers.export(exports, "removeBookmark", ()=>removeBookmark);
+parcelHelpers.export(exports, "checkIfArticleIsBookmarked", ()=>checkIfArticleIsBookmarked);
+parcelHelpers.export(exports, "setLocalStorage", ()=>setLocalStorage);
+parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _config = require("./config");
 var _helpers = require("./helpers");
@@ -1772,6 +1780,10 @@ const loadChosenArticle = function(id) {
         state.chosenArticle = art;
         return;
     }
+    for (let bookmarkedArt of state.bookmarks)if (bookmarkedArt.id == id) {
+        state.chosenArticle = bookmarkedArt;
+        return;
+    }
     throw new Error("We could not find that article. Please try with another one.");
 };
 const getSearchResultsPage = function(page = state.search.currentPage) {
@@ -1785,8 +1797,23 @@ const addBookmark = function(article) {
     if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = true;
 };
 const removeBookmark = function(article) {
-    state.bookmarks.pop(article);
+    state.bookmarks = state.bookmarks.filter((element)=>{
+        return element.id != article.id;
+    });
     if (article.id === state.chosenArticle.id) state.chosenArticle.bookmarked = false;
+};
+const checkIfArticleIsBookmarked = function() {
+    for (let bookmarkedArt of state.bookmarks)if (state.chosenArticle.id === bookmarkedArt.id) state.chosenArticle.bookmarked = true;
+};
+const setLocalStorage = function() {
+    localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+const getLocalStorage = function() {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (Array.isArray(bookmarks) && bookmarks.length > 0) {
+        state.bookmarks = bookmarks;
+        console.log(state.bookmarks);
+    }
 };
 
 },{"regenerator-runtime":"dXNgZ","./config":"k5Hzs","./helpers":"hGI1E","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dXNgZ":[function(require,module,exports) {
@@ -2734,6 +2761,7 @@ var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
 var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+var _modelJs = require("../model.js");
 class BookmarkListsView extends (0, _viewJsDefault.default) {
     _parentElement = document.querySelector(".bookmarks__list");
     _displayData() {
@@ -2743,8 +2771,8 @@ class BookmarkListsView extends (0, _viewJsDefault.default) {
                         <figure class="preview__fig">
                           <img src="${result.urlToImage}" alt="Test" />
                         </figure>
-                        <div class="preview__data">
-                          <h4 class="preview__name">
+                        <div class="preview__data preview__data__bookmark">
+                          <h4 class="preview__title">
                             ${result.title}
                           </h4>
                           <p class="preview__publisher">${result.author != null ? result.author.slice(0, 40) : ""}</p>
@@ -2754,9 +2782,12 @@ class BookmarkListsView extends (0, _viewJsDefault.default) {
             this._parentElement.insertAdjacentHTML("beforeend", markup);
         }
     }
+    addHandlerRender(handler) {
+        document.addEventListener("load", handler);
+    }
 }
 exports.default = new BookmarkListsView();
 
-},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
+},{"./View.js":"5cUXS","url:../../img/icons.svg":"loVOp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../model.js":"Y4A21"}]},["fA0o9","aenu9"], "aenu9", "parcelRequired059")
 
 //# sourceMappingURL=index.e37f48ea.js.map

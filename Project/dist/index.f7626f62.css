@@ -460,6 +460,10 @@ body {
   display: grid;
 }
 
+.preview__data__bookmark {
+  grid-template-columns: 1fr;
+}
+
 .preview__title {
   color: #1971c2;
   text-transform: uppercase;
