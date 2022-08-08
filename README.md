@@ -25,6 +25,8 @@ The user can:
 
 [<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg.PNG" width="792" height="400"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
 
+## Inspiration
+The app has been made along with Jonas Schmedtmann javascript course 'forkify' project. He created a similar app using recipes api to search through food recipes. It has been my inspiration when creating my own newsty project.
 
 ## Check it out on your own! 
 ### ❗ Disclaimer ❗
@@ -32,3 +34,4 @@ The user can:
 Unfortunately, the newsAPI does not allow the users to create API calls from the browser, except of the localhost. This means that you cannot search for the articles using the site hosted online. However, you can still add new articles and add them to bookmarks!
 
 ### [newsty.netlify.app](https://newsty.netlify.app/)
+
