@@ -21,6 +21,11 @@ The user can:
 - Save the article to the bookmark list and display them later by hovering the 'interesting' button
 - Create own articles and display them
 
+## Short video showing how it works
+
+[<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg.png" width="738" height="400"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
+
+
 ## Check it out on your own! 
 ### ❗ Disclaimer ❗
 
