@@ -73,7 +73,7 @@ const controlNextButton = function () {
   paginationView._render(model.state.search);
 };
 
-controlBookmark = function () {
+const controlBookmark = function () {
   let isBookmarked;
   if (!model.state.chosenArticle.bookmarked) {
     model.addBookmark(model.state.chosenArticle);
@@ -87,11 +87,11 @@ controlBookmark = function () {
   controlBookmarkList();
 };
 
-controlBookmarkList = function () {
+const controlBookmarkList = function () {
   bookmarkListView._render(model.state.bookmarks);
 };
 
-controlAddArticle = function (data) {
+const controlAddArticle = function (data) {
   const newArticle = data;
   newArticle.source = {
     id: 'user',

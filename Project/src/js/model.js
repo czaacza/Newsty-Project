@@ -33,7 +33,6 @@ export const loadArticles = async function (query) {
       };
       state.search.articles.push(art);
     }
-    console.log(state.search.articles);
   } catch (err) {
     console.error(`${err} !!!!`);
     throw err;
