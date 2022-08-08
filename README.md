@@ -1,5 +1,5 @@
 # Newsty-Project
-Vanilla HTML/CSS/Javascript web application using [newsAPI](https://newsapi.org/) to search actual news by keywords.
+Vanilla HTML/CSS/Javascript web application using [newsAPI](https://newsapi.org/) to search actual news articles by keywords.
 
 ## Concepts learnt during the project
 During the Newsty Project I used many important javascript concepts such as:
