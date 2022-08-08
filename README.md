@@ -23,7 +23,7 @@ The user can:
 
 ## Short video showing how it works
 
-[<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg.PNG" width="738" height="400"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
+[<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg.PNG" width="792" height="400"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
 
 
 ## Check it out on your own! 
