@@ -1,7 +1,7 @@
 # Newsty-Project
 Vanilla HTML/CSS/Javascript web application using [newsAPI](https://newsapi.org/) to search actual news articles by keywords.
 
-## Concepts learnt during the project
+## Concepts learned during the project
 During the Newsty Project I used many important javascript concepts such as:
 - DOM Elements operations, events
 - Data Structures, OOP, Modern operators
