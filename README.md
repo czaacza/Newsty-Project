@@ -21,9 +21,10 @@ The user can:
 - Save the article to the bookmark list and display them later by hovering the 'interesting' button
 - Create own articles and display them
 
-## Short app sample video
+## Short app sample video 
+Click on the image to see the sample video showing all the app utilities
 
-[<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg.PNG" width="792" height="400"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
+[<img src="https://github.com/czaacza/Newsty-Project/blob/master/helpFiles/videoImg2.PNG" width="754" height="600"/>](https://www.youtube.com/watch?v=ibjDHH2049g "Newsty Project presentation")
 
 ## Inspiration
 The app has been made along with Jonas Schmedtmann javascript course 'forkify' project. He created a similar app using recipes api to search through food recipes. It has been my inspiration when creating my own newsty project.
